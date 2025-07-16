@@ -1,12 +1,13 @@
+import { Hero } from './components/hero'
 import { NavBar } from './components/navbar'
 
 function App() {
 
   return (
-    <div className='bg-blue-900 min-h-screen w-screen overflow-x-hidden'>
+    <div className='bg-zinc-900 min-h-screen w-auto overflow-x-hidden'>
       <NavBar />
       <main>
-        <section>Hero</section>
+        <Hero />
         <section>productGrid</section>
         <section>narrative</section>
         <section>History</section>

@@ -17,11 +17,11 @@ const mainBarButtons = [
 ]
 
 export function NavBar(){
-
+  const isScroll = false
 
   return (
     <header>
-        <nav className="fixed inset-x-0 bg-zinc-900 border border-zinc-800 flex justify-between mx-2 rounded-md h-16">
+        <nav className={`fixed inset-x-0 z-50 flex justify-between mx-2 rounded-md h-16 ${isScroll && 'bg-zinc-900 border border-zinc-800' }`}>
 
           <div className="flex gap-4 items-center pl-2">
             <a className="cursor-pointer" href="/">
@@ -30,9 +30,9 @@ export function NavBar(){
 
             <div className="flex gap-3">
               {
-                mainBarButtons.map((item)=>(
-                <Button>
-                  <span className="font-bold text-[12px] uppercase">{item.name}</span>
+                mainBarButtons.map((item, index)=>(
+                <Button key={item.name + index}>
+                  <span className="font-bold md:text-xs text-[8px] uppercase">{item.name}</span>
                   {item.hasIcon && <FaLocationArrow className="rotate-135 w-2 mb-[1px]" />}
                 </Button>
                 ))
@@ -42,8 +42,8 @@ export function NavBar(){
 
           <div className="flex gap-4 items-center px-8">
             {
-              navBarButtons.map((item)=>(
-                <Button variant="navbar" className="flex gap-2 items-center">
+              navBarButtons.map((item, index)=>(
+                <Button key={item.name + index} variant="navbar" className="flex gap-2 items-center">
                   <span className="font-bold text-[12px] uppercase">{item.name}</span>
                   {item.hasIcon && <FaLocationArrow className="w-2"/>}
                 </Button>
