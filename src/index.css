@@ -1,1 +1,20 @@
 @import "tailwindcss";
+
+
+@theme {
+  --font-zentry: "Zentry", "sans-serif"; 
+}
+
+@font-face {
+  font-family: Zentry;
+  font-style: normal;
+  font-display: swap;
+  src: url("/fonts/zentry-regular.woff2") format("woff2");
+}
+
+@layer utilities {
+  .special-zentry {
+    font-family: "Zentry";
+    font-feature-settings: "ss01" on;
+  }
+}
