@@ -20,39 +20,42 @@ const formatNumberBetwenOneToFour = (i: number) => {
 
 export function Hero() {
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+  const [isExecuteAnimation, setIsExecuteAnimation] = useState(false);
   const nextVideoRef = useRef<HTMLVideoElement>(null);
   const nextVideoRefAux = useRef<HTMLVideoElement>(null);
   
   const handleClickVideo = () => {
     setCurrentVideoIndex((prev) => prev + 1);
+    setIsExecuteAnimation(true)
   };
 
   useGSAP(
     () => {
-      const DURATION = 1 // Duração da animação e salto para o video de traz ficar sincronozado
+      const DURATION = 1 // Duração da animação e do salto do video de traz, para ficar tudo sincronozado
+      if(isExecuteAnimation){
+        gsap.set("#next-video", { visibility: "visible" });
+        gsap.to("#next-video", {
+          width: "100%",
+          height: "100%",
+          duration: DURATION,
+          ease: "power1.inOut",
+          onStart: () => {
+            nextVideoRef.current?.play();
+          },
+          onComplete: () => {
+            if(nextVideoRefAux.current) {
+              nextVideoRefAux.current.src = `src/assets/video/hero-cut-${formatNumberBetwenOneToFour(currentVideoIndex)}.mp4`;
+              nextVideoRefAux.current.currentTime =+ DURATION;
+            }
+          },
+        });
 
-      gsap.set("#next-video", { visibility: "visible" });
-      gsap.to("#next-video", {
-        width: "100%",
-        height: "100%",
-        duration: DURATION,
-        ease: "power1.inOut",
-        onStart: () => {
-          nextVideoRef.current?.play();
-        },
-        onComplete: () => {
-          if(nextVideoRefAux.current) {
-            nextVideoRefAux.current.src = `src/assets/video/hero-cut-${formatNumberBetwenOneToFour(currentVideoIndex)}.mp4`;
-            nextVideoRefAux.current.currentTime =+ DURATION;
-          }
-        },
-      });
-
-      gsap.from("#current-video", {
-        scale: 0,
-        duration: 1.5,
-        ease: "power1.inOut",
-      });
+        gsap.from("#current-video", {
+          scale: 0,
+          duration: 1.5,
+          ease: "power1.inOut",
+        });
+      }
     },
     { dependencies: [currentVideoIndex], revertOnUpdate: true }
   );
@@ -64,6 +67,7 @@ export function Hero() {
       <video
         autoPlay
         ref={nextVideoRefAux}
+        src="src/assets/video/hero-cut-1.mp4"
         loop
         className="absolute inset-0 size-full object-cover object-center"
         muted
