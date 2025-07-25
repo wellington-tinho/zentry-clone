@@ -4,9 +4,10 @@ import { NavBar } from './components/navbar'
 function App() {
 
   return (
-    <div className='bg-zinc-900 min-h-screen w-auto overflow-x-hidden'>
+    <div className=' min-h-screen w-auto overflow-x-hidden'>
       <NavBar />
       <main>
+        <Hero />
         <Hero />
         <section>productGrid</section>
         <section>narrative</section>
