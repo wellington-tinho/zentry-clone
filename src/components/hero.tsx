@@ -60,68 +60,93 @@ export function Hero() {
     { dependencies: [currentVideoIndex], revertOnUpdate: true }
   );
 
+  useGSAP(() => {
+    gsap.set("#video-frame", {
+      clipPath: "polygon(14% 0%, 72% 0%, 90% 86%, 0% 86%)",
+    });
+
+    gsap.from("#video-frame", {
+      clipPath: "polygon( 0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+      ease: "power1.inOut",
+      scrollTrigger: {
+        trigger: "#video-frame",
+        start: "center center",
+        end: "bottom center",
+        scrub: true,
+      },
+    });
+  });
+
+
+  const getVideoSource = (index:number) => `src/assets/video/hero-cut-${formatNumberBetwenOneToFour(index)}.mp4`
+
 
   return (
-    <section className="relative min-h-screen w-screen ">
-
-      <video
-        autoPlay
-        ref={nextVideoRefAux}
-        src="src/assets/video/hero-cut-1.mp4"
-        loop
-        className="absolute inset-0 size-full object-cover object-center"
-        muted
-      />
-      <video 
-        ref={nextVideoRef}
-        src={`src/assets/video/hero-cut-${formatNumberBetwenOneToFour(currentVideoIndex)}.mp4`}
-        id="next-video"
-        loop
-        muted
-        className="top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]  invisible absolute size-64 object-cover object-center"
-      />
-
-      <h1 className="absolute uppercase text-7xl md:text-[10rem] top-20 left-12 text-white font-zentry tracking-wide">
-        <span>
-          Redefi<span className="special-zentry">N</span>e
-        </span>
-      </h1>
-
-      <span className="relative top-60 left-12 text-xl text-white">
-        Enter the Metagame
-        <br />
-        Unleash the Play Economy
-      </span>
-
-      <Button
-        variant="main"
-        className="relative top-60 left-12 mt-8 !bg-[#f1ff7e] !p-5"
-      >
-        <FaLocationArrow className="rotate-45 w-3 mb-[1px]" />
-        <span className="ml-1 font-bold md:text-xs text-[8px] uppercase">
-          Watch Trailer
-        </span>
-      </Button>
-
-      <h1 className="absolute uppercase text-7xl md:text-[10rem] bottom-20 right-12 text-white font-zentry">
+    <section className="relative">
+      <h1 className="absolute uppercase text-7xl md:text-[10rem] bottom-20 right-12 text-zinc-600 font-zentry -z-10">
         <span>
           G<span className="special-zentry">a</span>ming
         </span>
       </h1>
+      <div className="min-h-screen w-screen" id="video-frame">
+        <video autoPlay
+          ref={nextVideoRefAux}
+          src={getVideoSource(1)} // 1 == hero-cut-1.mp4 is initial video
+          loop
+          className="absolute inset-0 size-full object-cover object-center"
+          muted
+        />
+        <video ref={nextVideoRef}
+          src={getVideoSource(currentVideoIndex)}
+          id="next-video"
+          loop
+          muted
+          className="top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] invisible absolute size-64 object-cover object-center"
+        />
 
-      {/* Card video */}
-      <div className="absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] size-64 cursor-pointer overflow-hidden rounded-lg">
-        <div className="scale-50 opacity-0 transition-all hover:opacity-100 hover:scale-100 duration-500">
-          <video
-            onClick={handleClickVideo}
-            loop
-            muted
-            id="current-video"
-            src={`src/assets/video/hero-cut-${formatNumberBetwenOneToFour(currentVideoIndex+1)}.mp4`}
-            className="size-64 origin-center scale-150 object-cover object-center"
-          />
+        <h1 className="absolute uppercase text-7xl md:text-[10rem] top-20 left-12 text-white font-zentry tracking-wide">
+          <span>
+            Redefi<span className="special-zentry">N</span>e
+          </span>
+        </h1>
+
+        <span className="relative top-60 left-12 text-xl text-white">
+          Enter the Metagame
+          <br />
+          Unleash the Play Economy
+        </span>
+
+        <Button
+          variant="main"
+          className="relative top-60 left-12 mt-8 !bg-[#f1ff7e] !p-5"
+        >
+          <FaLocationArrow className="rotate-45 w-3 mb-[1px]" />
+          <span className="ml-1 font-bold md:text-xs text-[8px] uppercase">
+            Watch Trailer
+          </span>
+        </Button>
+
+        <h1 className="absolute z-10 uppercase text-7xl md:text-[10rem] bottom-20 right-12 text-white font-zentry">
+          <span>
+            G<span className="special-zentry">a</span>ming
+          </span>
+        </h1>
+
+        {/* Card video */}
+        <div className="absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] size-64 cursor-pointer overflow-hidden rounded-lg">
+          <div className="scale-50 opacity-0 transition-all hover:opacity-100 hover:scale-100 duration-500">
+            <video
+              onClick={handleClickVideo}
+              loop
+              muted
+              id="current-video"
+              src={getVideoSource(currentVideoIndex+1)}
+              className="size-64 origin-center scale-150 object-cover object-center"
+            />
+          </div>
         </div>
       </div>
-    </section>
+      
+   </section> 
   );
 }
