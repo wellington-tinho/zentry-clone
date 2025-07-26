@@ -1,6 +1,7 @@
 import { Button } from "./ui/button";
 import { FaLocationArrow } from "react-icons/fa";
 import { GiSoundWaves } from "react-icons/gi";
+import {useWindowScroll} from 'react-use';
 
 
 const navBarButtons = [
@@ -16,12 +17,13 @@ const mainBarButtons = [
   {name: "whitepaper" },
 ]
 
-export function NavBar(){
-  const isScroll = false
+export function NavBar(){ 
+  const { y } = useWindowScroll()
+  const isBgBlack = y > 0 
 
   return (
-    <header>
-        <nav className={`fixed inset-x-0 z-50 flex justify-between mx-2 rounded-md h-16 ${isScroll && 'bg-zinc-900 border border-zinc-800' }`}>
+    <header id="header">
+        <nav className={`fixed inset-x-0 z-50 flex border-none justify-between mx-2 rounded-md h-16 transition duration-500 ${isBgBlack && 'bg-zinc-900 border border-zinc-800' }`}>
 
           <div className="flex gap-4 items-center pl-2">
             <a className="cursor-pointer" href="/">
