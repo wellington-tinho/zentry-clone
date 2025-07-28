@@ -99,7 +99,7 @@ export function Hero() {
       <div className="min-h-screen w-screen" id="video-frame">
         <video autoPlay
           ref={nextVideoRefAux}
-          src={getVideoSource(1)} // 1 == hero-cut-1.mp4 is initial video
+          src={getVideoSource(0)} // 0 == hero-cut-1.mp4 is initial video
           loop
           className="absolute inset-0 size-full object-cover object-center"
           muted
