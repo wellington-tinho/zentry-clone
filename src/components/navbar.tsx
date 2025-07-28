@@ -20,10 +20,11 @@ const mainBarButtons = [
 export function NavBar(){ 
   const { y } = useWindowScroll()
   const isBgBlack = y > 0 
+  const isHideNavbar = y > 150
 
   return (
     <header id="header">
-        <nav className={`fixed inset-x-0 z-50 flex border-none justify-between mx-2 rounded-md h-16 transition duration-500 ${isBgBlack && 'bg-zinc-900 border border-zinc-800' }`}>
+        <nav className={`fixed inset-x-0 z-50 flex border-none justify-between mx-2 rounded-md h-16 transition duration-500   ${isHideNavbar && '-translate-y-52' } ${isBgBlack && 'bg-zinc-900 border border-zinc-800' }`}>
 
           <div className="flex gap-4 items-center pl-2">
             <a className="cursor-pointer" href="/">

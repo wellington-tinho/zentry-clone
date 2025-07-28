@@ -62,18 +62,26 @@ export function Hero() {
 
   useGSAP(() => {
     gsap.set("#video-frame", {
-      clipPath: "polygon(14% 0%, 72% 0%, 90% 86%, 0% 86%)",
+      clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)", // Retângulo
     });
 
-    gsap.from("#video-frame", {
-      clipPath: "polygon( 0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-      ease: "power1.inOut",
+    const tl = gsap.timeline({
       scrollTrigger: {
         trigger: "#video-frame",
         start: "center center",
         end: "bottom center",
         scrub: true,
-      },
+      }
+    });
+
+    tl.to("#video-frame", {
+      clipPath: "polygon(8% 0%, 80% 0%, 90% 85%, 2% 90%)",
+      ease: "power1.inOut",
+    });
+
+    tl.to("#video-frame", {
+      clipPath: "polygon(18% 0, 80% 0, 92% 94%, 4% 84%)",
+      ease: "power1.inOut",
     });
   });
 
@@ -83,7 +91,7 @@ export function Hero() {
 
   return (
     <section className="relative">
-      <h1 className="absolute uppercase text-7xl md:text-[10rem] bottom-20 right-12 text-zinc-600 font-zentry -z-10">
+      <h1 className="absolute uppercase text-7xl md:text-[10rem] bottom-20 right-12 text-zinc-950 font-zentry -z-10">
         <span>
           G<span className="special-zentry">a</span>ming
         </span>
