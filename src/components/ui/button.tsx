@@ -1,10 +1,10 @@
 
-import type { ReactNode } from "react";
+import type { ButtonHTMLAttributes, ReactNode } from "react";
 
-interface IPropsButton {
+interface IPropsButton extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string
   children?: ReactNode
-  variant?: "main" | "navbar" | "default"
+  variant?: "main" | "navbar" | "default" | "clean"
 }
 
 
