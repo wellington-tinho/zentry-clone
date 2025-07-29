@@ -18,3 +18,13 @@
     font-feature-settings: "ss01" on;
   }
 }
+
+.wave {
+  animation: wave 1s linear infinite;
+  animation-delay: var(--time-delay);
+}
+@keyframes wave {
+  0%   { transform: scaleY(0.2); }
+  50%  { transform: scaleY(1.2); }
+  100% { transform: scaleY(0.2); }
+}

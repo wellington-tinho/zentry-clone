@@ -68,20 +68,6 @@ export function NavBar() {
   };
 
   return (
-    <>
-      <style>
-        {`
-          .wave {
-            animation: wave 1s linear infinite;
-            animation-delay: var(--i);
-          }
-          @keyframes wave {
-            0%   { transform: scaleY(0.2); }
-            50%  { transform: scaleY(1.2); }
-            100% { transform: scaleY(0.2); }
-          }
-        `}
-      </style>
       <header id="header">
         <nav
           className={`
@@ -159,7 +145,7 @@ export function NavBar() {
                     className={`h-1 w-px rounded-full bg-white transition-all duration-200 ease-in-out ${
                       audioZentryPlaying ? 'wave h-3' : ''
                     }`}
-                    style={{ "--i": `${randomDelay}ms` } as React.CSSProperties}
+                  style={{ "--time-delay": `${randomDelay}ms` } as React.CSSProperties}
                   ></div>
                 );
               })}
@@ -168,6 +154,5 @@ export function NavBar() {
           </div>
         </nav>
       </header>
-    </>
   );
 }
