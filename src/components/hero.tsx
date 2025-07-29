@@ -100,7 +100,7 @@ export function Hero() {
   return (
     <section className="relative">
       {audio}
-      <h1 className="absolute uppercase text-7xl md:text-[10rem] bottom-20 right-12 text-zinc-950 font-zentry -z-10">
+      <h1 className="absolute uppercase text-7xl md:text-[10rem] bottom-20 right-12 text-zinc-950 font-zentry">
         <span>
           G<span className="special-zentry">a</span>ming
         </span>
@@ -121,13 +121,13 @@ export function Hero() {
           className="top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] invisible absolute size-64 object-cover object-center"
         />
 
-        <h1 className="absolute uppercase text-7xl md:text-[10rem] top-20 left-12 text-white font-zentry tracking-wide">
+        <h1 className="absolute uppercase text-7xl md:text-[10rem] top-20 left-12 text-[#DFDFF2] font-zentry tracking-wide">
           <span>
             Redefi<span className="special-zentry">N</span>e
           </span>
         </h1>
 
-        <span className="relative top-60 left-12 text-xl text-white">
+        <span className="relative top-60 left-12 text-xl text-[#DFDFF2]">
           Enter the Metagame
           <br />
           Unleash the Play Economy
@@ -143,7 +143,7 @@ export function Hero() {
           </span>
         </Button>
 
-        <h1 className="absolute z-10 uppercase text-7xl md:text-[10rem] bottom-20 right-12 text-white font-zentry">
+        <h1 className="absolute uppercase text-7xl md:text-[10rem] bottom-20 right-12 text-[#DFDFF2] font-zentry">
           <span>
             G<span className="special-zentry">a</span>ming
           </span>
