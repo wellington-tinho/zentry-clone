@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
 import gsap from "gsap";
-
+import { useAudio } from "react-use";
 gsap.registerPlugin(ScrollTrigger);
 
 /**
@@ -17,16 +17,24 @@ const formatNumberBetwenOneToFour = (i: number) => {
   return (i % TOTAL_VIDEOS) + 1;
 };
 
-
 export function Hero() {
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
   const [isExecuteAnimation, setIsExecuteAnimation] = useState(false);
   const nextVideoRef = useRef<HTMLVideoElement>(null);
   const nextVideoRefAux = useRef<HTMLVideoElement>(null);
+  const [audio, state, controls, ref] = useAudio({src: 'src/assets/audio/whoosh.mp3', autoPlay: false,});
   
   const handleClickVideo = () => {
+    console.log({audio, state, controls, ref})
     setCurrentVideoIndex((prev) => prev + 1);
     setIsExecuteAnimation(true)
+    if (ref.current) {
+      ref.current.currentTime = 0; // Always start from beginning
+      controls.play();
+      setTimeout(() => {
+        controls.pause();
+      }, 1000); // Pause after 1s
+    }
   };
 
   useGSAP(
@@ -91,6 +99,7 @@ export function Hero() {
 
   return (
     <section className="relative">
+      {audio}
       <h1 className="absolute uppercase text-7xl md:text-[10rem] bottom-20 right-12 text-zinc-950 font-zentry -z-10">
         <span>
           G<span className="special-zentry">a</span>ming
