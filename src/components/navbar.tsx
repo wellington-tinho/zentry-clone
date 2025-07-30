@@ -68,91 +68,91 @@ export function NavBar() {
   };
 
   return (
-      <header id="header">
-        <nav
-          className={`
-            fixed inset-x-0 z-50 flex border-none justify-between mx-2 rounded-md h-16 transition duration-500   
-            ${isHideNavbar && "-translate-y-52"} 
-            ${isBgBlack && "bg-zinc-900 border border-zinc-800"}
-          `}
-        >
-          <div className="flex gap-4 items-center pl-2">
-            <a className="cursor-pointer" href="/">
-              <img
-                className="w-14"
-                src="src/assets/zentry-symbol-white.png"
-                alt="Logo zentry"
-              />
-            </a>
-
-            <div className="flex gap-3">
-              {mainBarButtons.map((item, index) => (
-                <Button key={item.name + index}>
-                  <span className="font-bold md:text-xs text-[8px] uppercase">
-                    {item.name}
-                  </span>
-                  {item.hasIcon && (
-                    <FaLocationArrow className="rotate-135 w-2 mb-[1px]" />
-                  )}
-                </Button>
-              ))}
-            </div>
-          </div>
-
-          <div className="flex gap-4 items-center px-8">
-            <audio
-              src="src/assets/audio/ui.mp3"
-              ref={uiSoundAudioElementRef}
-              className="hidden"
-              hidden
+    <header id="header">
+      <nav
+        className={`
+          fixed inset-x-0 z-50 flex border-none justify-between mx-2 rounded-md h-16 transition duration-500   
+          ${isHideNavbar && "-translate-y-52"} 
+          ${isBgBlack && "bg-zinc-900 border border-zinc-800"}
+        `}
+      >
+        <div className="flex gap-4 items-center pl-2">
+          <a className="cursor-pointer" href="/">
+            <img
+              className="w-14"
+              src="src/assets/zentry-symbol-white.png"
+              alt="Logo zentry"
             />
-            {navBarButtons.map((item, index) => (
-              <Button
-                key={item.name + index}
-                variant="navbar"
-                className="flex gap-2 items-center"
-                onMouseEnter={playUiSoundAudioElement}
-              >
-                <span className="font-bold text-[12px] uppercase">
+          </a>
+
+          <div className="flex gap-3">
+            {mainBarButtons.map((item, index) => (
+              <Button key={item.name + index}>
+                <span className="font-bold md:text-xs text-[8px] uppercase">
                   {item.name}
                 </span>
-                {item.hasIcon && <FaLocationArrow className="w-2" />}
+                {item.hasIcon && (
+                  <FaLocationArrow className="rotate-135 w-2 mb-[1px]" />
+                )}
               </Button>
             ))}
+          </div>
+        </div>
 
-            <button
-              onClick={toggleSoundZentry}
-              className="cursor-pointer p-2 flex "
+        <div className="flex gap-4 items-center px-8">
+          <audio
+            src="src/assets/audio/ui.mp3"
+            ref={uiSoundAudioElementRef}
+            className="hidden"
+            hidden
+          />
+          {navBarButtons.map((item, index) => (
+            <Button
+              key={item.name + index}
+              variant="navbar"
+              className="flex gap-2 items-center"
               onMouseEnter={playUiSoundAudioElement}
             >
-              <audio
-                src="src/assets/audio/music_main.mp3"
-                ref={zentryMusicAudioElementRef}
-                className="hidden"
-                loop
-                hidden
-              />
-              <div
-                ref={wavesElementRef}
-                className="flex items-center space-x-0.5"
-              >
-              {[...Array(6)].map((_, index) => {
-                const randomDelay = Math.floor(Math.random() * 6 + 1) * 100; // entre 100ms e 600ms
+              <span className="font-bold text-[12px] uppercase">
+                {item.name}
+              </span>
+              {item.hasIcon && <FaLocationArrow className="w-2" />}
+            </Button>
+          ))}
 
-                return (
-                  <div
-                    key={index}
-                    className={`h-1 w-px rounded-full bg-white transition-all duration-200 ease-in-out ${
-                      audioZentryPlaying ? 'wave h-3' : ''
-                    }`}
+          <button
+            onClick={toggleSoundZentry}
+            className="cursor-pointer p-2 flex "
+            onMouseEnter={playUiSoundAudioElement}
+          >
+            <audio
+              src="src/assets/audio/music_main.mp3"
+              ref={zentryMusicAudioElementRef}
+              className="hidden"
+              loop
+              hidden
+            />
+            <div
+              ref={wavesElementRef}
+              className="flex items-center space-x-0.5"
+            >
+            {[...Array(6)].map((_, index) => {
+              const randomDelay = Math.floor(Math.random() * 6 + 1) * 100; // entre 100ms e 600ms
+
+              return (
+                <div
+                  key={index}
+                  className={`h-1 w-px rounded-full bg-white transition-all duration-200 ease-in-out ${
+                    audioZentryPlaying ? 'wave h-3' : ''
+                  }`}
                   style={{ "--time-delay": `${randomDelay}ms` } as React.CSSProperties}
-                  ></div>
-                );
-              })}
-              </div>
-            </button>
-          </div>
-        </nav>
-      </header>
+                ></div>
+              );
+            })}
+            </div>
+          </button>
+        </div>
+      </nav>
+    </header>
   );
 }
