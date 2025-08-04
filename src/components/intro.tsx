@@ -1,11 +1,59 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
+import { useRef } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
 
 export function Intro() {
+
+  const imageCustomHomeIntroRef = useRef<HTMLImageElement>(null)
+
+
+  const handleMouseLeave = () => {
+    const element = imageCustomHomeIntroRef.current;
+
+    if (element) {
+      gsap.to(element, {
+        duration: 1,
+        rotateX: 0,
+        rotateY: 0,
+        ease: "power1.inOut",
+      });
+    }
+  };
+
+  const handleMouseMove = (e:MouseEvent) => {
+    const { y: verticallyPositionElement } = imageCustomHomeIntroRef.current!.getBoundingClientRect()
+
+    if(verticallyPositionElement == 0) return
+
+    const { clientX, clientY } = e;
+    const element = imageCustomHomeIntroRef.current;
+
+    if (!element) return;
+
+    const rect = element.getBoundingClientRect();
+    const x = clientX - rect.left;
+    const y = clientY - rect.top;
+
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    const rotateX = ((y - centerY) / centerY) * -5;
+    const rotateY = ((x - centerX) / centerX) * 5;
+
+    gsap.to(element, {
+      duration: 0.3,
+      rotateX,
+      rotateY,
+      transformPerspective: 100,
+      ease: "power1.inOut",
+    });
+  };
+
+
   useGSAP(() => {
 
      gsap.set("#clip-image", {
@@ -49,11 +97,19 @@ export function Intro() {
       </div>
 
       <div className="relative h-dvh"  id="clip-image">
-        <div className="absolute z-10 left-1/2 top-0 h-[60vh] w-96 origin-center -translate-x-1/2 overflow-hidden rounded-3xl" id="clip-image-child">
+        <div
+          className=" absolute z-10 left-1/2 top-0 h-[60vh] w-96 origin-center -translate-x-1/2 rounded-3xl" 
+          id="clip-image-child"
+            onMouseLeave={handleMouseLeave}
+            onMouseUp={handleMouseLeave}
+            onMouseEnter={handleMouseLeave}
+            onMouseMove={handleMouseMove}
+        >
           <img
+            ref={imageCustomHomeIntroRef}
             src="src/assets/images/custom-home-intro-desktop.webp"
             alt="Background"
-            className="absolute left-0 top-0 size-full object-cover"
+            className="absolute left-0 top-0 size-full object-cover rounded-3xl"
           />
         </div>
         <div className="absolute mt-[60vh] w-screen left-1/2 -translate-x-1/2 flex items-center flex-col text-xs">
