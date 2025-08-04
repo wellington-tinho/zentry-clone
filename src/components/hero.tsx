@@ -99,7 +99,7 @@ export function Hero() {
       tl.to(
         parent,
         {
-          borderRadius: "30%",
+          borderRadius: "0 0 50% 30%",
           ease: "power1.inOut",
         },
         "<"
@@ -114,7 +114,7 @@ export function Hero() {
       tl.to(
         parent,
         {
-          borderRadius: "0 0 40% 50%",
+          borderRadius: "0 0 30% 50%",
           ease: "power1.inOut",
         },
         "<"
