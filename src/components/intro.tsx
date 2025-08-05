@@ -7,9 +7,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 
 export function Intro() {
-
   const imageCustomHomeIntroRef = useRef<HTMLImageElement>(null)
-
 
   const handleMouseLeave = () => {
     const element = imageCustomHomeIntroRef.current;
@@ -24,15 +22,18 @@ export function Intro() {
     }
   };
 
-  const handleMouseMove = (e:MouseEvent) => {
-    const { y: verticallyPositionElement } = imageCustomHomeIntroRef.current!.getBoundingClientRect()
-
-    if(verticallyPositionElement == 0) return
-
-    const { clientX, clientY } = e;
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const element = imageCustomHomeIntroRef.current;
 
     if (!element) return;
+    const { y: verticallyPositionElement } = element.getBoundingClientRect() || { y: 0 }
+
+    if(verticallyPositionElement <= 0) {
+      handleMouseLeave()
+      return
+    }
+
+    const { clientX, clientY } = e;
 
     const rect = element.getBoundingClientRect();
     const x = clientX - rect.left;
@@ -41,25 +42,19 @@ export function Intro() {
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
 
-    const rotateX = ((y - centerY) / centerY) * -5;
-    const rotateY = ((x - centerX) / centerX) * 5;
+    const rotateX = ((y - centerY) / centerY) * -.08;
+    const rotateY = ((x - centerX) / centerX) * .08;
 
     gsap.to(element, {
       duration: 0.3,
       rotateX,
       rotateY,
-      transformPerspective: 100,
+      transformPerspective: 10,
       ease: "power1.inOut",
     });
   };
 
-
   useGSAP(() => {
-
-     gsap.set("#clip-image", {
-      // clipPath: "polygon(20% 1%, 70% 12%, 7% 84%, 24% 100%)",
-    });
-
     const clipAnimation = gsap.timeline({
       scrollTrigger: {
         trigger: "#clip-image",
@@ -70,8 +65,6 @@ export function Intro() {
         pinSpacing: true,
       },
     });
-
-   
 
     clipAnimation.to("#clip-image-child", {
       width: "100vw",
@@ -96,22 +89,30 @@ export function Intro() {
         </p>
       </div>
 
+
       <div className="relative h-dvh"  id="clip-image">
         <div
-          className=" absolute z-10 left-1/2 top-0 h-[60vh] w-96 origin-center -translate-x-1/2 rounded-3xl" 
+          className="absolute z-10 left-1/2 top-0 h-[60vh] w-[28rem] origin-center -translate-x-1/2 rounded-3xl" 
           id="clip-image-child"
-            onMouseLeave={handleMouseLeave}
-            onMouseUp={handleMouseLeave}
-            onMouseEnter={handleMouseLeave}
-            onMouseMove={handleMouseMove}
         >
           <img
-            ref={imageCustomHomeIntroRef}
             src="src/assets/images/custom-home-intro-desktop.webp"
             alt="Background"
             className="absolute left-0 top-0 size-full object-cover rounded-3xl"
           />
         </div>
+          <img
+            src="src/assets/images/custom-home-intro.webp"
+            alt="Background rocks"
+            className="absolute -translate-x-1/2 z-20 size-full min-w-fit object-cover"
+            ref={imageCustomHomeIntroRef}
+            onMouseLeave={handleMouseLeave}
+            onMouseUp={handleMouseLeave}
+            onMouseEnter={handleMouseLeave}
+            onMouseMove={handleMouseMove}
+          />
+
+
         <div className="absolute mt-[60vh] w-screen left-1/2 -translate-x-1/2 flex items-center flex-col text-xs">
           <p className="mt-7">
             <b>The Metagame begins—your life, now an epic MMORPG</b>
@@ -123,7 +124,6 @@ export function Intro() {
           </p>
         </div>
       </div>
-
     </section>
   );
 }
