@@ -55,6 +55,13 @@ export function Intro() {
   };
 
   useGSAP(() => {
+    // clip-path: ;
+
+     gsap.set("#clip-image-child", {
+      clipPath: "polygon(25% 12%, 76% 16%, 83% 66%, 25% 80%)",
+    });
+    
+    
     const clipAnimation = gsap.timeline({
       scrollTrigger: {
         trigger: "#clip-image",
@@ -65,10 +72,9 @@ export function Intro() {
         pinSpacing: true,
       },
     });
-
+    
     clipAnimation.to("#clip-image-child", {
-      width: "100vw",
-      height: "100vh",
+      clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
       borderRadius: 0,
     });
   });
@@ -90,21 +96,21 @@ export function Intro() {
       </div>
 
 
-      <div className="relative h-dvh"  id="clip-image">
+      <div className="relative h-dvh border border-red-600 min-w-10"  id="clip-image">
         <div
-          className="absolute z-10 left-1/2 top-0 h-[60vh] w-[28rem] origin-center -translate-x-1/2 rounded-3xl" 
+          className="absolute z-10 left-1/2 h-dvh top-0 origin-center -translate-x-1/2 rounded-3xl" 
           id="clip-image-child"
         >
           <img
             src="src/assets/images/custom-home-intro-desktop.webp"
             alt="Background"
-            className="absolute left-0 top-0 size-full object-cover rounded-3xl"
+            className="absolute inset-0 size-full object-cover rounded-3xl"
           />
         </div>
           <img
             src="src/assets/images/custom-home-intro.webp"
             alt="Background rocks"
-            className="absolute -translate-x-1/2 z-20 size-full min-w-fit object-cover"
+            className="absolute border-b-cyan-400 border-2 -translate-x-1/2 z-20 size-full min-w-fit object-cover"
             ref={imageCustomHomeIntroRef}
             onMouseLeave={handleMouseLeave}
             onMouseUp={handleMouseLeave}
