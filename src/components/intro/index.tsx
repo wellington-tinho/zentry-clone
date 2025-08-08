@@ -102,7 +102,7 @@ export function Intro() {
 
       <div className="relative h-dvh"  id="clip-image">
         <div
-          className={`${style.clipImageBorder} absolute z-10 left-1/2 top-0 h-dvh w-dvw origin-center -translate-x-1/2 rounded-3xl`}
+          className="absolute z-10 left-1/2 top-0 h-dvh w-dvw origin-center -translate-x-1/2 rounded-3xl"
           id="clip-image-child"
         >
           <img
@@ -111,6 +111,7 @@ export function Intro() {
             className="absolute left-0 top-0 size-full object-cover rounded-3xl"
           />
         </div>
+        
           <img
             src="src/assets/images/custom-home-intro.webp"
             alt="Background rocks"

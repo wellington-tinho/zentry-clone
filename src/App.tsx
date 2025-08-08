@@ -1,7 +1,8 @@
 import { Suspense } from 'react'
 import { Hero } from './components/hero'
-import { Intro } from './components/intro'
+import { Intro } from './components/intro/index'
 import { NavBar } from './components/navbar'
+import { PrductGrid } from './components/productGrid'
 
 function App() {
 
@@ -12,7 +13,7 @@ function App() {
         <main>
           <Hero />
           <Intro />
-          <section>productGrid</section>
+          <PrductGrid/>
           <section>narrative</section>
           <section>History</section>
         </main>
