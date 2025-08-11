@@ -6,7 +6,12 @@ import { useGSAP } from "@gsap/react";
 gsap.registerPlugin(SplitText);
 gsap.registerPlugin(ScrollTrigger);
 
-export function AnimatedText({ children }: { children: ReactNode }) {
+interface IAnimatedTextProps {
+  children: ReactNode,
+  className?: string,
+}
+
+export function AnimatedText({ children, className = "", ...props }: IAnimatedTextProps) {
   const textRef = useRef<HTMLDivElement | null>(null);
   const splitRef = useRef<SplitText | null>(null);
 
@@ -27,8 +32,8 @@ export function AnimatedText({ children }: { children: ReactNode }) {
     
     const tl = gsap.timeline({
       scrollTrigger: {
-        trigger: ".animated-text",
-        start: "100 bottom",
+        trigger: textRef.current,
+        start: "top center+=150", // dispara quando o topo está 150px abaixo do centro da tela
         end: "center bottom",
         toggleActions: "play none none reverse",
       },
@@ -50,7 +55,7 @@ export function AnimatedText({ children }: { children: ReactNode }) {
 );
 
   return (
-    <div ref={textRef} className="animated-text">
+    <div ref={textRef} className={className} {...props}>
       {children}
     </div>
   );

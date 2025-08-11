@@ -1,6 +1,6 @@
 import { Suspense } from 'react'
 import { Hero } from './components/hero'
-import { Intro } from './components/intro/index'
+import { Intro } from './components/intro'
 import { NavBar } from './components/navbar'
 import { PrductGrid } from './components/productGrid'
 

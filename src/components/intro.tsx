@@ -2,8 +2,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import { useRef } from "react";
-import style from "./styles.module.css"
-import { AnimatedText } from "../ui/animatedText";
+import { AnimatedText } from "./ui/animatedText";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,7 +15,7 @@ export function Intro() {
 
     if (element) {
       gsap.to(element, {
-        duration: 1,
+        duration: 5,
         rotateX: 0,
         rotateY: 0,
         ease: "power1.inOut",
@@ -24,35 +23,35 @@ export function Intro() {
     }
   };
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  const MAX_TILT = 25; // graus, seu limite máximo desejado
+
+  const clamp = (value:number, min:number, max:number) => Math.max(min, Math.min(value, max));
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
     const element = imageCustomHomeIntroRef.current;
-
     if (!element) return;
-    const { y: verticallyPositionElement } = element.getBoundingClientRect() || { y: 0 }
-
-    if(verticallyPositionElement <= 0) {
-      handleMouseLeave()
-      return
-    }
-
-    const { clientX, clientY } = e;
 
     const rect = element.getBoundingClientRect();
-    const x = clientX - rect.left;
-    const y = clientY - rect.top;
 
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
+    // Calcula posição do mouse DENTRO do elemento (0 ~ width/height)
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
 
-    const rotateX = ((y - centerY) / centerY) * -.08;
-    const rotateY = ((x - centerX) / centerX) * .08;
+    // Porcentagem em relação ao centro (de -0.25 a 0.25)
+    const percentX = ((x / rect.width) - 0.5) * 0.5; // -0.25 (esquerda) a 0.25 (direita)
+    const percentY = ((y / rect.height) - 0.5) * 0.5; // -0.25 (topo) a 0.25 (base)
+
+
+    // Multiplica pelo máximo desejado e clampa entre -MAX_TILT e +MAX_TILT
+    const rotateY = clamp(percentX * MAX_TILT, -MAX_TILT, MAX_TILT); // Y controla left/right
+    const rotateX = clamp(-percentY * MAX_TILT, -MAX_TILT, MAX_TILT); // X controla up/down (negativo para efeito intuitivo)
 
     gsap.to(element, {
-      duration: 0.3,
+      duration: 0.2,
       rotateX,
       rotateY,
-      transformPerspective: 10,
-      ease: "power1.inOut",
+      transformPerspective: 800,
+      ease: "power2.out",
     });
   };
 
