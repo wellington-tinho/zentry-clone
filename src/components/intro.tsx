@@ -14,18 +14,13 @@ export function Intro() {
     const element = imageCustomHomeIntroRef.current;
 
     if (element) {
-      gsap.to(element, {
-        duration: 5,
-        rotateX: 0,
-        rotateY: 0,
-        ease: "power1.inOut",
-      });
+    gsap.to(element, { duration: 4, x: 0, y: 0, ease: "power2.out" });
     }
   };
 
-  const MAX_TILT = 25; // graus, seu limite máximo desejado
+  const MAX_MOVE = 40; // pixels, o quanto a imagem pode se mover no máximo
 
-  const clamp = (value:number, min:number, max:number) => Math.max(min, Math.min(value, max));
+  const clamp = (value: number, min: number, max: number) => Math.max(min, Math.min(value, max));
 
   const handleMouseMove = (e: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
     const element = imageCustomHomeIntroRef.current;
@@ -37,20 +32,18 @@ export function Intro() {
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
 
-    // Porcentagem em relação ao centro (de -0.25 a 0.25)
-    const percentX = ((x / rect.width) - 0.5) * 0.5; // -0.25 (esquerda) a 0.25 (direita)
-    const percentY = ((y / rect.height) - 0.5) * 0.5; // -0.25 (topo) a 0.25 (base)
+    // Porcentagem em relação ao centro (de -1 a 1)
+    const percentX = ((x / rect.width) - 0.5) * 2; // -1 (esquerda) a 1 (direita)
+    const percentY = ((y / rect.height) - 0.5) * 2; // -1 (topo) a 1 (base)
 
-
-    // Multiplica pelo máximo desejado e clampa entre -MAX_TILT e +MAX_TILT
-    const rotateY = clamp(percentX * MAX_TILT, -MAX_TILT, MAX_TILT); // Y controla left/right
-    const rotateX = clamp(-percentY * MAX_TILT, -MAX_TILT, MAX_TILT); // X controla up/down (negativo para efeito intuitivo)
+    // Movimenta ao contrário do mouse: quando o mouse vai pra direita, a imagem vai pra esquerda (e vice-versa)
+    const moveX = clamp(-percentX * MAX_MOVE, -MAX_MOVE, MAX_MOVE);
+    const moveY = clamp(-percentY * MAX_MOVE, -MAX_MOVE, MAX_MOVE);
 
     gsap.to(element, {
       duration: 0.2,
-      rotateX,
-      rotateY,
-      transformPerspective: 800,
+      x: moveX,
+      y: moveY,
       ease: "power2.out",
     });
   };
@@ -123,7 +116,7 @@ export function Intro() {
           />
 
 
-        <div className="absolute mt-[60vh] w-screen left-1/2 -translate-x-1/2 flex items-center flex-col text-xs">
+        <div className="absolute mt-[80vh] w-screen left-1/2 -translate-x-1/2 flex items-center flex-col text-xs">
           <p className="mt-7">
             <b>The Metagame begins—your life, now an epic MMORPG</b>
           </p>
