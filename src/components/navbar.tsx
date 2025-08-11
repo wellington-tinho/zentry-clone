@@ -22,7 +22,6 @@ export function NavBar() {
   const isHideNavbar = y > 150;
   const zentryMusicAudioElementRef = useRef<HTMLAudioElement>(null);
   const uiSoundAudioElementRef = useRef<HTMLAudioElement>(null);
-  const wavesElementRef = useRef<HTMLDivElement>(null);
   const [audioZentryPlaying, setAudioZentryPlaying] = useState(false);
 
   const toggleSoundZentry = () => {
@@ -132,10 +131,7 @@ export function NavBar() {
               loop
               hidden
             />
-            <div
-              ref={wavesElementRef}
-              className="flex items-center space-x-0.5"
-            >
+            <div className="flex items-center space-x-0.5">
             {[...Array(6)].map((_, index) => {
               const randomDelay = Math.floor(Math.random() * 6 + 1) * 100; // entre 100ms e 600ms
 

@@ -28,7 +28,6 @@ export function Hero() {
   });
 
   const handleClickVideo = () => {
-    console.log({ audio, state, controls, ref });
     setCurrentVideoIndex((prev) => prev + 1);
     setIsExecuteAnimation(true);
     if (ref.current) {
