@@ -9,12 +9,14 @@ gsap.registerPlugin(ScrollTrigger);
 
 export function Intro() {
   const imageCustomHomeIntroRef = useRef<HTMLImageElement>(null)
+  const imageCustomHomeIntroBackgroundRef = useRef<HTMLImageElement>(null)
 
   const handleMouseLeave = () => {
     const element = imageCustomHomeIntroRef.current;
 
     if (element) {
     gsap.to(element, { duration: 4, x: 0, y: 0, ease: "power2.out" });
+    gsap.to(imageCustomHomeIntroBackgroundRef.current, { duration: 1, x: 0, y: 0, ease: "power2.out" });
     }
   };
 
@@ -27,7 +29,12 @@ export function Intro() {
     if (!element) return;
 
     const rect = element.getBoundingClientRect();
-
+    
+    if(rect.y <= 0) {
+      handleMouseLeave()
+      return
+    }
+        
     // Calcula posição do mouse DENTRO do elemento (0 ~ width/height)
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
@@ -46,6 +53,13 @@ export function Intro() {
       y: moveY,
       ease: "power2.out",
     });
+
+    gsap.to(imageCustomHomeIntroBackgroundRef.current,{
+      duration: 0.2,
+      x: moveX * .25,
+      y: moveY * .25,
+      ease: "power2.out",
+    })
   };
 
   useGSAP(() => {
@@ -101,6 +115,7 @@ export function Intro() {
             src="src/assets/images/custom-home-intro-desktop.webp"
             alt="Background"
             className="absolute left-0 top-0 size-full object-cover rounded-3xl"
+            ref={imageCustomHomeIntroBackgroundRef}
           />
         </div>
         
