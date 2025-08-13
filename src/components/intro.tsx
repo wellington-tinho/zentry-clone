@@ -108,13 +108,13 @@ export function Intro() {
 
       <div className="relative h-dvh"  id="clip-image">
         <div
-          className="absolute z-10 left-1/2 top-0 h-dvh w-dvw origin-center -translate-x-1/2 rounded-3xl"
+          className="absolute z-10 left-1/2 top-0 h-dvh w-dvw origin-center -translate-x-1/2"
           id="clip-image-child"
         >
           <img
             src="src/assets/images/custom-home-intro-desktop.webp"
             alt="Background"
-            className="absolute left-0 top-0 size-full object-cover rounded-3xl"
+            className="absolute left-0 top-0 size-full object-cover"
             ref={imageCustomHomeIntroBackgroundRef}
           />
         </div>
