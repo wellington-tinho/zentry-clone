@@ -10,25 +10,25 @@ export function PrductGrid (){
 
       {/* Product Grid item  */}
       <GridItem 
-        videoSrc="src/assets/video/radiant_desktop_homepage_v9.mp4"
+        video={<video src="src/assets/video/radiant_desktop_homepage_v9.mp4" className="rounded-2xl w-full h-full object-contain" loop muted/>}
         title={<p className="mb-2 text-6xl font-zentry">RADIA<span className="special-zentry">N</span>T</p>}
         text={<p className="text-lg leading-5 text-zinc-300">The game of games app <br/> transforming moments across <br/>Web2 & Web3 titles into rewards</p>}
       />
 
       <div className="grid grid-cols-2 gap-6 my-6">
         <GridItem 
-          videoSrc="src/assets/video/zigma_desktop_homepage-lg.mp4"
+          video={<video src="src/assets/video/zigma_desktop_homepage-lg.mp4" className="rounded-2xl w-full h-full object-contain" loop muted/>}
           title={<p className="mb-2 text-6xl font-zentry">RADIA<span className="special-zentry">N</span>T</p>}
           text={<p className="text-lg leading-5 text-zinc-300">The game of games app <br/> transforming moments across <br/>Web2 & Web3 titles into rewards</p>}
         />
         <div className="flex flex-col justify-between">
           <GridItem 
-            videoSrc="src/assets/video/spectre_desktop_homepage-lg.mp4"
+            video={<video src="src/assets/video/spectre_desktop_homepage-lg.mp4" className="rounded-2xl w-full h-full object-contain" loop muted/>}
             title={<p className="mb-2 text-6xl font-zentry">RADIA<span className="special-zentry">N</span>T</p>}
             text={<p className="text-lg leading-5 text-zinc-300">The game of games app <br/> transforming moments across <br/>Web2 & Web3 titles into rewards</p>}
           />
           <GridItem 
-            videoSrc="src/assets/video/zoltan_desktop_homepage-lg.mp4"
+            video={<video src="src/assets/video/zoltan_desktop_homepage-lg.mp4" className="rounded-2xl w-full h-full object-contain" loop muted/>}
             title={<p className="mb-2 text-6xl font-zentry">RADIA<span className="special-zentry">N</span>T</p>}
             text={<p className="text-lg leading-5 text-zinc-300">The game of games app <br/> transforming moments across <br/>Web2 & Web3 titles into rewards</p>}
           />
@@ -42,7 +42,7 @@ export function PrductGrid (){
           hiddenButton={true}
         />
         <GridItem 
-          videoSrc="src/assets/video/trailer-md.mp4"
+          video={<video src="src/assets/video/trailer-md.mp4" className="rounded-2xl w-full h-full object-contain" loop muted autoPlay/>}
           hiddenButton={true}
         />
       </div>
