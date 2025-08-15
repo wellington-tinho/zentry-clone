@@ -36,7 +36,8 @@ export function PrductGrid (){
       </div>
 
       <div className="grid grid-cols-2 gap-6 my-6">
-        <GridItem 
+        <GridItem
+          className="bg-[#5724ff]" 
           title={<p className="text-black mb-2 text-6xl font-zentry">M<span className="special-zentry">O</span>RE <br/> CO<span className="special-zentry">M</span>ING <br/> S<span className="special-zentry">OO</span>N.</p> }
           hiddenButton={true}
         />

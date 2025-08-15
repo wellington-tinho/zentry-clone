@@ -7,12 +7,13 @@ interface IGridItemProps {
   text?: ReactElement,
   imageSrc?: string,
   hiddenButton?: boolean,
+  className?: string,
 }
 
-export function GridItem({videoSrc, title, text, hiddenButton=false}:IGridItemProps) {
+export function GridItem({videoSrc, title, text, hiddenButton=false, className=""}:IGridItemProps) {
   return (
-    <div className="border relative border-zinc-700 rounded-2xl bg-[#5724ff]">
-      <video src={videoSrc} className="rounded-2xl" autoPlay loop muted/>
+    <div className={`border relative border-zinc-700 rounded-2xl ${className}`}>
+      <video src={videoSrc} className="rounded-2xl w-full h-full object-contain" autoPlay loop muted/>
 
       {/* Top text */}
       <div className="absolute p-6 top-0">
