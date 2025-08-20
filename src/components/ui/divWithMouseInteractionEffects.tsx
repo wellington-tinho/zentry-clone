@@ -51,7 +51,8 @@ export function DivWithMouseInteractionEffects({children, sensitivity=1, ...prop
       ref={cardItemRef} 
       onMouseLeave={handleMouseLeave}
       onMouseMove={handleMouseMove}
-    {...props}>
+      {...props}
+    >
       {children}
     </div>
   )

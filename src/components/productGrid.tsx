@@ -26,7 +26,7 @@ export function PrductGrid (){
             text={<p className="text-lg leading-5 text-zinc-300">The game of games app <br/> transforming moments across <br/>Web2 & Web3 titles into rewards</p>}
           />
         </DivWithMouseInteractionEffects>
-        
+
         <div className="flex flex-col justify-between">
           <DivWithMouseInteractionEffects>
             <GridItem 
@@ -48,17 +48,18 @@ export function PrductGrid (){
 
       <div className="grid grid-cols-2 gap-6 my-6">
         <DivWithMouseInteractionEffects>
-        <GridItem
-          className="bg-[#5724ff]" 
-          title={<p className="text-black mb-2 text-6xl font-zentry">M<span className="special-zentry">O</span>RE <br/> CO<span className="special-zentry">M</span>ING <br/> S<span className="special-zentry">OO</span>N.</p> }
-          hiddenButton={true}
-        />
+          <GridItem
+            className="bg-[#5724ff] h-full" 
+            title={<p className="text-black mb-2 text-6xl font-zentry">M<span className="special-zentry">O</span>RE <br/> CO<span className="special-zentry">M</span>ING <br/> S<span className="special-zentry">OO</span>N.</p> }
+            hiddenButton={true}
+          />
         </DivWithMouseInteractionEffects>
+
         <DivWithMouseInteractionEffects>
-        <GridItem 
-          video={<video src="src/assets/video/trailer-md.mp4" className="rounded-2xl w-full h-full object-contain" loop muted autoPlay/>}
-          hiddenButton={true}
-        />
+          <GridItem 
+            video={<video src="src/assets/video/trailer-md.mp4" className="rounded-2xl w-full h-full object-contain" loop muted autoPlay/>}
+            hiddenButton={true}
+          />
         </DivWithMouseInteractionEffects>
       </div>
     </section>
