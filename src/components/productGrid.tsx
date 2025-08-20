@@ -1,3 +1,4 @@
+import { DivWithMouseInteractionEffects } from "./ui/divWithMouseInteractionEffects";
 import { GridItem } from "./ui/gridItem";
 
 export function PrductGrid (){
@@ -9,42 +10,56 @@ export function PrductGrid (){
       </div>
 
       {/* Product Grid item  */}
-      <GridItem 
-        video={<video src="src/assets/video/radiant_desktop_homepage_v9.mp4" className="rounded-2xl w-full h-full object-contain" loop muted/>}
-        title={<p className="mb-2 text-6xl font-zentry">RADIA<span className="special-zentry">N</span>T</p>}
-        text={<p className="text-lg leading-5 text-zinc-300">The game of games app <br/> transforming moments across <br/>Web2 & Web3 titles into rewards</p>}
-      />
-
-      <div className="grid grid-cols-2 gap-6 my-6">
+      <DivWithMouseInteractionEffects>
         <GridItem 
-          video={<video src="src/assets/video/zigma_desktop_homepage-lg.mp4" className="rounded-2xl w-full h-full object-contain" loop muted/>}
+          video={<video src="src/assets/video/radiant_desktop_homepage_v9.mp4" className="rounded-2xl w-full h-full object-contain" loop muted/>}
           title={<p className="mb-2 text-6xl font-zentry">RADIA<span className="special-zentry">N</span>T</p>}
           text={<p className="text-lg leading-5 text-zinc-300">The game of games app <br/> transforming moments across <br/>Web2 & Web3 titles into rewards</p>}
         />
+      </DivWithMouseInteractionEffects>
+
+      <div className="grid grid-cols-2 gap-6 my-6">
+        <DivWithMouseInteractionEffects>
+          <GridItem 
+            video={<video src="src/assets/video/zigma_desktop_homepage-lg.mp4" className="rounded-2xl w-full h-full object-contain" loop muted/>}
+            title={<p className="mb-2 text-6xl font-zentry">RADIA<span className="special-zentry">N</span>T</p>}
+            text={<p className="text-lg leading-5 text-zinc-300">The game of games app <br/> transforming moments across <br/>Web2 & Web3 titles into rewards</p>}
+          />
+        </DivWithMouseInteractionEffects>
+        
         <div className="flex flex-col justify-between">
-          <GridItem 
-            video={<video src="src/assets/video/spectre_desktop_homepage-lg.mp4" className="rounded-2xl w-full h-full object-contain" loop muted/>}
-            title={<p className="mb-2 text-6xl font-zentry">RADIA<span className="special-zentry">N</span>T</p>}
-            text={<p className="text-lg leading-5 text-zinc-300">The game of games app <br/> transforming moments across <br/>Web2 & Web3 titles into rewards</p>}
-          />
-          <GridItem 
-            video={<video src="src/assets/video/zoltan_desktop_homepage-lg.mp4" className="rounded-2xl w-full h-full object-contain" loop muted/>}
-            title={<p className="mb-2 text-6xl font-zentry">RADIA<span className="special-zentry">N</span>T</p>}
-            text={<p className="text-lg leading-5 text-zinc-300">The game of games app <br/> transforming moments across <br/>Web2 & Web3 titles into rewards</p>}
-          />
+          <DivWithMouseInteractionEffects>
+            <GridItem 
+              video={<video src="src/assets/video/spectre_desktop_homepage-lg.mp4" className="rounded-2xl w-full h-full object-contain" loop muted/>}
+              title={<p className="mb-2 text-6xl font-zentry">RADIA<span className="special-zentry">N</span>T</p>}
+              text={<p className="text-lg leading-5 text-zinc-300">The game of games app <br/> transforming moments across <br/>Web2 & Web3 titles into rewards</p>}
+            />
+          </DivWithMouseInteractionEffects>
+
+          <DivWithMouseInteractionEffects>
+            <GridItem 
+              video={<video src="src/assets/video/zoltan_desktop_homepage-lg.mp4" className="rounded-2xl w-full h-full object-contain" loop muted/>}
+              title={<p className="mb-2 text-6xl font-zentry">RADIA<span className="special-zentry">N</span>T</p>}
+              text={<p className="text-lg leading-5 text-zinc-300">The game of games app <br/> transforming moments across <br/>Web2 & Web3 titles into rewards</p>}
+            />
+          </DivWithMouseInteractionEffects>
         </div>
       </div>
 
       <div className="grid grid-cols-2 gap-6 my-6">
+        <DivWithMouseInteractionEffects>
         <GridItem
           className="bg-[#5724ff]" 
           title={<p className="text-black mb-2 text-6xl font-zentry">M<span className="special-zentry">O</span>RE <br/> CO<span className="special-zentry">M</span>ING <br/> S<span className="special-zentry">OO</span>N.</p> }
           hiddenButton={true}
         />
+        </DivWithMouseInteractionEffects>
+        <DivWithMouseInteractionEffects>
         <GridItem 
           video={<video src="src/assets/video/trailer-md.mp4" className="rounded-2xl w-full h-full object-contain" loop muted autoPlay/>}
           hiddenButton={true}
         />
+        </DivWithMouseInteractionEffects>
       </div>
     </section>
   )

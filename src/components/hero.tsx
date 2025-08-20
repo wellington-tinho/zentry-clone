@@ -5,6 +5,7 @@ import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
 import gsap from "gsap";
 import { useAudio } from "react-use";
+import { DivWithMouseInteractionEffects } from "./ui/divWithMouseInteractionEffects";
 gsap.registerPlugin(ScrollTrigger);
 
 /**
@@ -22,7 +23,7 @@ export function Hero() {
   const [isExecuteAnimation, setIsExecuteAnimation] = useState(false);
   const nextVideoRef = useRef<HTMLVideoElement>(null);
   const nextVideoRefAux = useRef<HTMLVideoElement>(null);
-  const [audio, state, controls, ref] = useAudio({
+  const [audio, _, controls, ref] = useAudio({
     src: "src/assets/audio/whoosh.mp3",
     autoPlay: false,
   });
@@ -179,18 +180,18 @@ export function Hero() {
           </h1>
 
           {/* Card video */}
-          <div className="absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] size-64 cursor-pointer overflow-hidden rounded-lg">
-            <div className="scale-50 opacity-0 transition-all hover:opacity-100 hover:scale-100 duration-500">
-              <video
-                onClick={handleClickVideo}
-                loop
-                muted
-                id="current-video"
-                src={getVideoSource(currentVideoIndex + 1)}
-                className="size-64 origin-center scale-150 object-cover object-center"
-              />
-            </div>
-          </div>
+          <DivWithMouseInteractionEffects sensitivity={5} className="absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] size-64 cursor-pointer overflow-hidden rounded-lg">
+              <div className="scale-50 opacity-0 transition-all hover:opacity-100 hover:scale-100 duration-500">
+                <video
+                  onClick={handleClickVideo}
+                  loop
+                  muted
+                  id="current-video"
+                  src={getVideoSource(currentVideoIndex + 1)}
+                  className="size-64 origin-center scale-150 object-cover object-center"
+                />
+              </div>
+          </DivWithMouseInteractionEffects>
         </div>
       </div>
     </section>
