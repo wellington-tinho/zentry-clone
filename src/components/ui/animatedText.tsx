@@ -1,4 +1,4 @@
-import { type ReactNode, useRef } from "react";
+import { type DetailedHTMLProps, type HTMLAttributes, type ReactNode, useRef } from "react";
 import gsap from "gsap";
 import { SplitText, ScrollTrigger } from "gsap/all";
 import { useGSAP } from "@gsap/react";
@@ -6,17 +6,16 @@ import { useGSAP } from "@gsap/react";
 gsap.registerPlugin(SplitText);
 gsap.registerPlugin(ScrollTrigger);
 
-interface IAnimatedTextProps {
+interface IAnimatedTextProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>{
   children: ReactNode,
-  className?: string,
+  xAxis?: number,
 }
 
-export function AnimatedText({ children, className = "", ...props }: IAnimatedTextProps) {
+export function AnimatedText({ children, xAxis=1000, ...props }: IAnimatedTextProps) {
   const textRef = useRef<HTMLDivElement | null>(null);
   const splitRef = useRef<SplitText | null>(null);
 
   useGSAP(async() => {
-
      // Aguarda fonts carregarem: minimalista e seguro!
     if (document.fonts && document.fonts.ready) {
       await document.fonts.ready;
@@ -41,7 +40,7 @@ export function AnimatedText({ children, className = "", ...props }: IAnimatedTe
 
     // Anima as words
     tl.from(splitRef.current.words, {
-      x: 1500,
+      x: xAxis,
       opacity: 0,
       duration: 1,
       ease: "power4",
@@ -51,11 +50,11 @@ export function AnimatedText({ children, className = "", ...props }: IAnimatedTe
     });
 
   },
-  { dependencies: [children], revertOnUpdate: true }
+  {revertOnUpdate: true }
 );
 
   return (
-    <div ref={textRef} className={className} {...props}>
+    <div ref={textRef} {...props}>
       {children}
     </div>
   );
