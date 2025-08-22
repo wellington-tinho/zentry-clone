@@ -3,8 +3,8 @@ import { GridItem } from "./ui/gridItem";
 
 export function PrductGrid (){
   return(
-    <section className="text-white bg-zinc-950 font-medium text-[1.2rem] px-40">
-      <div className="py-40 leading-5 flex gap-1 flex-col">
+    <section className="h-full text-white bg-zinc-950 font-medium text-[1.2rem] px-40 py-14">
+      <div className="py-36 leading-5 flex gap-1 flex-col">
         <p>Explore the Zentry Universe</p>
         <span className="text-gray-600 text-[1.15rem]">Immerse yourself in an IP-rich product universe where <br/>players, agentic AI and blockchain lead the new <br/>economic paradigm.</span>
       </div>
@@ -12,7 +12,7 @@ export function PrductGrid (){
       {/* Product Grid item  */}
       <DivWithMouseInteractionEffects>
         <GridItem 
-          video={<video src="src/assets/video/radiant_desktop_homepage_v9.mp4" className="rounded-2xl w-full h-full object-contain" loop muted/>}
+          video={<video src="src/assets/video/radiant_desktop_homepage_v9.mp4" className="rounded-2xl w-full h-auto object-contain" loop muted/>}
           title={<p className="mb-2 text-6xl font-zentry">RADIA<span className="special-zentry">N</span>T</p>}
           text={<p className="text-lg leading-5 text-zinc-300">The game of games app <br/> transforming moments across <br/>Web2 & Web3 titles into rewards</p>}
         />
@@ -21,7 +21,7 @@ export function PrductGrid (){
       <div className="grid grid-cols-2 gap-6 my-6">
         <DivWithMouseInteractionEffects>
           <GridItem 
-            video={<video src="src/assets/video/zigma_desktop_homepage-lg.mp4" className="rounded-2xl w-full h-full object-contain" loop muted/>}
+            video={<video src="src/assets/video/zigma_desktop_homepage-lg.mp4" className="rounded-2xl w-full h-auto object-contain" loop muted/>}
             title={<p className="mb-2 text-6xl font-zentry">RADIA<span className="special-zentry">N</span>T</p>}
             text={<p className="text-lg leading-5 text-zinc-300">The game of games app <br/> transforming moments across <br/>Web2 & Web3 titles into rewards</p>}
           />
@@ -30,7 +30,7 @@ export function PrductGrid (){
         <div className="flex flex-col justify-between">
           <DivWithMouseInteractionEffects>
             <GridItem 
-              video={<video src="src/assets/video/spectre_desktop_homepage-lg.mp4" className="rounded-2xl w-full h-full object-contain" loop muted/>}
+              video={<video src="src/assets/video/spectre_desktop_homepage-lg.mp4" className="rounded-2xl w-full h-auto object-contain" loop muted/>}
               title={<p className="mb-2 text-6xl font-zentry">RADIA<span className="special-zentry">N</span>T</p>}
               text={<p className="text-lg leading-5 text-zinc-300">The game of games app <br/> transforming moments across <br/>Web2 & Web3 titles into rewards</p>}
             />
@@ -38,7 +38,7 @@ export function PrductGrid (){
 
           <DivWithMouseInteractionEffects>
             <GridItem 
-              video={<video src="src/assets/video/zoltan_desktop_homepage-lg.mp4" className="rounded-2xl w-full h-full object-contain" loop muted/>}
+              video={<video src="src/assets/video/zoltan_desktop_homepage-lg.mp4" className="rounded-2xl w-full h-auto object-contain" loop muted/>}
               title={<p className="mb-2 text-6xl font-zentry">RADIA<span className="special-zentry">N</span>T</p>}
               text={<p className="text-lg leading-5 text-zinc-300">The game of games app <br/> transforming moments across <br/>Web2 & Web3 titles into rewards</p>}
             />
@@ -57,7 +57,7 @@ export function PrductGrid (){
 
         <DivWithMouseInteractionEffects>
           <GridItem 
-            video={<video src="src/assets/video/trailer-md.mp4" className="rounded-2xl w-full h-full object-contain" loop muted autoPlay/>}
+            video={<video src="src/assets/video/trailer-md.mp4" className="rounded-2xl w-full h-auto object-contain" loop muted autoPlay/>}
             hiddenButton={true}
           />
         </DivWithMouseInteractionEffects>
