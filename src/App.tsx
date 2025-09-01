@@ -14,7 +14,6 @@ function App() {
           <Hero />
           <Intro />
           <PrductGrid/>
-          <section>narrative</section>
           <section>History</section>
         </main>
         <footer>

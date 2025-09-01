@@ -44,6 +44,8 @@ export function PrductGrid (){
     })
   },  {revertOnUpdate: true });
   
+    const indexCurrentVideo = 1
+    const getVideoSource = `src/assets/video/symbol_${indexCurrentVideo}@lg.webm`;
   return(
     <>
     <section id="product-grid" className="h-full text-white bg-zinc-950 font-medium text-[1.2rem] px-40 py-14">
@@ -115,6 +117,15 @@ export function PrductGrid (){
           powerd by ZE<span className="special-zentry">n</span>try
         </p>
       </AnimatedText>
+a
+        <video
+          autoPlay
+          src={getVideoSource} // 0 == hero-cut-1.mp4 is initial video
+          loop
+          className="absolute right-0 w-32
+           botton-0 object-center top-auto" 
+          muted
+        />
     </section>
     </>
   )
