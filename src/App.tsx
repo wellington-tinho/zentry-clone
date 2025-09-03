@@ -3,6 +3,7 @@ import { Hero } from './components/hero'
 import { Intro } from './components/intro'
 import { NavBar } from './components/navbar'
 import { PrductGrid } from './components/productGrid'
+import { Information } from './components/information'
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
           <Hero />
           <Intro />
           <PrductGrid/>
+          <Information/>
           <section>History</section>
         </main>
         <footer>
