@@ -1,53 +1,8 @@
 import { DivWithMouseInteractionEffects } from "./ui/divWithMouseInteractionEffects";
 import { GridItem } from "./ui/gridItem";
-import { useGSAP } from "@gsap/react";
-import { AnimatedText } from "./ui/animatedText";
-import { ScrollTrigger } from "gsap/all";
-import gsap from "gsap";
-
-gsap.registerPlugin(ScrollTrigger);
 
 export function PrductGrid (){
-  useGSAP(async() => {
-
-     // Aguarda fonts carregarem: minimalista e seguro!
-    if (document.fonts && document.fonts.ready) {
-      await document.fonts.ready;
-    }
-
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: "#top-information",
-        start: "center center",
-        end: "center center", 
-        scrub: true,
-        pin: true,
-      }
-    })
-
-    tl.set("#top-information",{
-      color: "#ffffff",
-      backgroundColor: "#09090b"
-    })
-    tl.set("#product-grid",{
-      color: "#ffffff",
-      backgroundColor: "#09090b"
-    })
-
-    tl.to("#top-information",{
-      color: "#09090b",
-      backgroundColor: "#EDFF66"
-    })
-    tl.to("#product-grid",{
-      color: "#09090b",
-      backgroundColor: "#EDFF66"
-    })
-  },  {revertOnUpdate: true });
-  
-    const indexCurrentVideo = 1
-    const getVideoSource = `src/assets/video/symbol_${indexCurrentVideo}@lg.webm`;
   return(
-    <>
     <section id="product-grid" className="h-full text-white bg-zinc-950 font-medium text-[1.2rem] px-40 py-14">
       <div className="py-36 leading-5 flex gap-1 flex-col">
         <p>Explore the Zentry Universe</p>
@@ -108,25 +63,5 @@ export function PrductGrid (){
         </DivWithMouseInteractionEffects>
       </div>
     </section>
-    <section id="top-information" className="py-10 h-dvh">
-      <AnimatedText xAxis={-100} className="p-8 top-0">
-        <p className="text-7xl font-zentry">
-          the univ<span className="special-zentry">e</span>rse
-        </p>
-        <p className="text-7xl font-zentry">
-          powerd by ZE<span className="special-zentry">n</span>try
-        </p>
-      </AnimatedText>
-a
-        <video
-          autoPlay
-          src={getVideoSource} // 0 == hero-cut-1.mp4 is initial video
-          loop
-          className="absolute right-0 w-32
-           botton-0 object-center top-auto" 
-          muted
-        />
-    </section>
-    </>
   )
 }
