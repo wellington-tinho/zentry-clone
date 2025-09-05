@@ -53,12 +53,12 @@ export function Information() {
         ease: "none",
         scrollTrigger: {
           trigger: "#information-section",
-          start: "top center",                   // começa quando section encosta no topo
+          start: "top top",                   // começa quando section encosta no topo
           end: () => `+=${el.duration * 100}`,// ajusta o scroll proporcional à duração
           scrub: true,                        // vídeo anda junto com o scroll
           pin: true,                          // fixa a section na tela (vídeo fica parado no bottom)
           anticipatePin: 1,                   // suaviza o pin
-          markers: { startColor: "blue", endColor: "pink" },
+          markers: { startColor: "black", endColor: "pink" },
         },
       });
     };
