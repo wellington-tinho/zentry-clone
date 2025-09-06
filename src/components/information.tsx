@@ -6,38 +6,44 @@ import { AnimatedText } from "./ui/animatedText";
 
 // registra o plugin ScrollTrigger no GSAP
 gsap.registerPlugin(ScrollTrigger);
+interface IInformationProps {
+  setIsColorLight: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-export function Information() {
+export function Information({ setIsColorLight }: IInformationProps) {
   // useVideo retorna [elemento, state, controls, ref]
-  const [videoEl, state, controls, refVideo] = useVideo({
+  const [videoEl, state, _, refVideo] = useVideo({
     src: "src/assets/video/Zentry_Token.mp4",
     loop: true,
-    className: "border-4 border-blue-500 absolute right-0 w-2xl bottom-0 object-center top-auto",
+    className: "absolute right-0 w-2xl bottom-0 object-center top-auto",
     id: "video-information-section",
   });
 
   useGSAP(() => {
-    // 1) Exemplo de troca de cor brusca
-    // (aqui está ligado ao vídeo, mas pode ser na section também)
+
+    // Realizar troca de cor do fundo
       gsap.set("#video-information-section", {
-        color: "#ffffff",
-        backgroundColor: "#09090b",
+        opacity:"0",
+        duration: 0,
       });
       
       const videoAnimation = gsap.timeline({
         scrollTrigger: {
           trigger: "#video-information-section",
-          start: "top bottom", // ativa antes de aparecer
+          start: "top center", // ativa antes de aparecer
+          toggleActions: "play none none reverse",
           markers: true,
-        },
-      });
-      
-      videoAnimation.to("#video-information-section", {
-        color: "#09090b",
-        backgroundColor: "#DFDFF2",
+          onEnter: () => setIsColorLight(true),       // scroll descendo, ativa
+          onLeaveBack: () => setIsColorLight(false),  // scroll subindo, desativa
+        }
       });
 
-    // 2) Controlar o vídeo com o scroll
+      videoAnimation.to("#video-information-section", {
+        opacity:"1",
+        duration: 0,
+      });
+
+    // Controlar o vídeo com o scroll
     const el = refVideo.current as HTMLVideoElement | null;
 
     const createVideoST = () => {
@@ -58,7 +64,6 @@ export function Information() {
           scrub: true,                        // vídeo anda junto com o scroll
           pin: true,                          // fixa a section na tela (vídeo fica parado no bottom)
           anticipatePin: 1,                   // suaviza o pin
-          markers: { startColor: "black", endColor: "pink" },
         },
       });
     };
@@ -73,10 +78,11 @@ export function Information() {
     }
   }, { revertOnUpdate: true });
 
+
   return (
     <section
       id="information-section"
-      className="relative py-10 h-dvh border-4 border-red-500"
+      className="relative py-10 h-dvh"
     >
       
       <AnimatedText xAxis={-100} className="p-8 top-0 z-10">
@@ -88,6 +94,29 @@ export function Information() {
         </p>
       </AnimatedText>
       {videoEl}
+
+      <div id="accordion-area" className=" p-8 absolute left-0 bottom-0">
+        <details>
+          <summary>Shaping Zentry Collectively</summary>
+          <p>
+            ZENT holders shape governance, set direction, and steer the evolution...
+          </p>
+        </details>
+
+        <details>
+          <summary>Unlocking Economic Opportunity</summary>
+          <p>
+            ZENT is the index for crypto and AI, giving holders access to new markets...
+          </p>
+        </details>
+
+        <details>
+          <summary>Sharing Value Accrued</summary>
+          <p>
+            ZENT holders benefit from Zentry’s ecosystem growth, capturing value...
+          </p>
+        </details>
+      </div>
     </section>
   );
 }

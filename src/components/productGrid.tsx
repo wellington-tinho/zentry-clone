@@ -1,9 +1,9 @@
 import { DivWithMouseInteractionEffects } from "./ui/divWithMouseInteractionEffects";
 import { GridItem } from "./ui/gridItem";
 
-export function PrductGrid (){
+export function ProductGrid (){
   return(
-    <section id="product-grid" className="h-full text-white bg-zinc-950 font-medium text-[1.2rem] px-40 py-14">
+    <section id="product-grid" className="h-ful font-medium text-[1.2rem] px-40 py-14">
       <div className="py-36 leading-5 flex gap-1 flex-col">
         <p>Explore the Zentry Universe</p>
         <span className="text-gray-600 text-[1.15rem]">Immerse yourself in an IP-rich product universe where <br/>players, agentic AI and blockchain lead the new <br/>economic paradigm.</span>

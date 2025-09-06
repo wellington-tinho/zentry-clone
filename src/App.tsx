@@ -1,11 +1,12 @@
-import { Suspense } from 'react'
+import { Suspense, useState } from 'react'
 import { Hero } from './components/hero'
 import { Intro } from './components/intro'
 import { NavBar } from './components/navbar'
-import { PrductGrid } from './components/productGrid'
+import { ProductGrid } from './components/productGrid'
 import { Information } from './components/information'
 
 function App() {
+    const [isColorLight, setIsColorLight] = useState(false);
 
   return (
     <Suspense fallback={<>Carregando</>}>
@@ -14,8 +15,10 @@ function App() {
         <main>
           <Hero />
           <Intro />
-          <PrductGrid/>
-          <Information/>
+          <div className={`${isColorLight ? "bg-[#DFDFF2] text-[#09090b]" : "bg-zinc-950 text-white"}`}>
+            <ProductGrid/>
+            <Information setIsColorLight={setIsColorLight}/>
+          </div>
           <section>History</section>
         </main>
         <footer>
