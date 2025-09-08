@@ -30,7 +30,7 @@ export function GridItem({video, title, text, hiddenButton=false, className=""}:
     <div 
       onMouseLeave={handleMouseLeave}
       onMouseMove={handleMouseMove}
-      className={`border relative border-zinc-700 rounded-2xl ${className}`}
+      className={`relative border border-zinc-700 rounded-2xl ${className}`}
     >
       {video}
 
@@ -51,7 +51,6 @@ export function GridItem({video, title, text, hiddenButton=false, className=""}:
           </div>
         )
       }
-
     </div>
   )
 }

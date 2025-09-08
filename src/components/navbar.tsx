@@ -75,6 +75,7 @@ export function NavBar() {
           ${isBgBlack && "bg-zinc-900 border border-zinc-800"}
         `}
       >
+        {/* Left navbar-items */}
         <div className="flex gap-4 items-center pl-2">
           <a className="cursor-pointer" href="/">
             <img
@@ -98,7 +99,8 @@ export function NavBar() {
           </div>
         </div>
 
-        <div className="flex gap-4 items-center px-8">
+        {/* Right navbar-items */}
+        <div className="flex gap-4 items-center px-8 relative">
           <audio
             src="src/assets/audio/ui.mp3"
             ref={uiSoundAudioElementRef}

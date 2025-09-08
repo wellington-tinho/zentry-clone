@@ -118,11 +118,10 @@ export function Intro() {
             ref={imageCustomHomeIntroBackgroundRef}
           />
         </div>
-        
           <img
             src="src/assets/images/custom-home-intro.webp"
             alt="Background rocks"
-            className="absolute -translate-x-1/2 z-20 size-full min-w-fit object-cover"
+            className="absolute origin-center -translate-x-1/2 z-20 size-full min-w-fit object-cover"
             ref={imageCustomHomeIntroRef}
             onMouseLeave={handleMouseLeave}
             onMouseUp={handleMouseLeave}
