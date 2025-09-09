@@ -3,6 +3,7 @@ import { ScrollTrigger } from "gsap/all";
 import { useVideo } from "react-use";
 import gsap from "gsap";
 import { AnimatedText } from "./ui/animatedText";
+import { AccordionScrool } from "./ui/accordionScrool";
 
 // registra o plugin ScrollTrigger no GSAP
 gsap.registerPlugin(ScrollTrigger);
@@ -95,28 +96,7 @@ export function Information({ setIsColorLight }: IInformationProps) {
       </AnimatedText>
       {videoEl}
 
-      <div id="accordion-area" className=" p-8 absolute left-0 bottom-0">
-        <details>
-          <summary>Shaping Zentry Collectively</summary>
-          <p>
-            ZENT holders shape governance, set direction, and steer the evolution...
-          </p>
-        </details>
-
-        <details>
-          <summary>Unlocking Economic Opportunity</summary>
-          <p>
-            ZENT is the index for crypto and AI, giving holders access to new markets...
-          </p>
-        </details>
-
-        <details>
-          <summary>Sharing Value Accrued</summary>
-          <p>
-            ZENT holders benefit from Zentry’s ecosystem growth, capturing value...
-          </p>
-        </details>
-      </div>
+    <AccordionScrool/>
     </section>
   );
 }
