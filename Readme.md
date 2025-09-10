@@ -1,7 +1,5 @@
 
-<img src="./public/zentry-icon.png" width="24" height="24" alt="Zentry Icon" />
-
-# Zentry Clone 
+# <img src="./public/zentry-icon.png" width="24" height="24" alt="Zentry Icon" /> Zentry Clone 
 
 Este projeto é um clone da landing page da Zentry, desenvolvido com React, TypeScript, Vite e TailwindCSS.
 
@@ -9,9 +7,7 @@ Este projeto é um clone da landing page da Zentry, desenvolvido com React, Type
 
 ##  Demonstração
 
-Insira aqui um GIF ou screenshot do projeto em execução.
-
-![Demonstração do Projeto](https://portfolio-lake-eta-46.vercel.app/assets/zentry-clone.mp4)
+[Veja o vídeo do Zentry Clone](https://portfolio-lake-eta-46.vercel.app/assets/zentry-clone.mp4)
 
 Versão live: https://zentry-clone-olive-one.vercel.app/
 
