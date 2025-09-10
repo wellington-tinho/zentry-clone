@@ -1,48 +1,21 @@
 
-![image](./public/zentry-icon.png)
+<img src="./public/zentry-icon.png" width="24" height="24" alt="Zentry Icon" />
 
-# Zentry Clone 🚧
+# Zentry Clone 
 
 Este projeto é um clone da landing page da Zentry, desenvolvido com React, TypeScript, Vite e TailwindCSS.
 
 > 🚧 **Em desenvolvimento** — funcionalidades e estilos ainda podem sofrer alterações.
 
-## � Demonstração
+##  Demonstração
 
 Insira aqui um GIF ou screenshot do projeto em execução.
 
-![Demonstração do Projeto](./public/zentry-icon.png)
+![Demonstração do Projeto](https://portfolio-lake-eta-46.vercel.app/assets/zentry-clone.mp4)
 
-Versão live: https://vercel-123.com
+Versão live: https://zentry-clone-olive-one.vercel.app/
 
-## �📦 Estrutura do Projeto (detalhada)
-
-Raiz do repositório:
-
-```
-eslint.config.js
-index.html
-package.json
-pnpm-lock.yaml
-Readme.md
-tsconfig.app.json
-tsconfig.json
-tsconfig.node.json
-vite.config.ts
-public/
-src/
-```
-
-Conteúdo do diretório `public/`:
-
-```
-public/
-├── zentry-icon.png
-└── fonts/
-   └── zentry-regular.woff2
-```
-
-Conteúdo do diretório `src/` (principais arquivos e pastas):
+## 📦 Estrutura do Projeto (detalhada)
 
 ```
 src/
@@ -50,17 +23,6 @@ src/
 ├── main.tsx                  # Ponto de entrada do React
 ├── index.css                 # Estilos globais (Tailwind)
 ├── vite-env.d.ts             # Tipagens do Vite
-├── assets/
-│   ├── zentry-symbol-white.png
-│   ├── audio/
-│   │   ├── music_loop_1.mp3
-│   │   └── music_main.mp3
-│   ├── images/
-│   │   ├── custom-home-intro-desktop.webp
-│   │   └── custom-home-intro.webp
-│   └── video/
-│       ├── hero-cut-1.mp4
-│       └── radiant_desktop_homepage_v9.mp4
 └── components/
    ├── hero.tsx
    ├── intro.tsx
