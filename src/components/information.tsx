@@ -24,47 +24,48 @@ export function Information({ setIsColorLight }: IInformationProps) {
 
     // Realizar troca de cor do fundo
       gsap.set("#video-information-section", {
-        opacity:"0",
-        duration: 0,
+        opacity: 0,
       });
-      
       const videoAnimation = gsap.timeline({
         scrollTrigger: {
           trigger: "#video-information-section",
           start: "top center", // ativa antes de aparecer
           toggleActions: "play none none reverse",
-          markers: true,
           onEnter: () => setIsColorLight(true),       // scroll descendo, ativa
           onLeaveBack: () => setIsColorLight(false),  // scroll subindo, desativa
         }
       });
 
       videoAnimation.to("#video-information-section", {
-        opacity:"1",
-        duration: 0,
+        opacity: 1,
+        duration: 1, // <- já deixa fade-in mais suave
+        ease: "power2.out"
       });
 
-    // Controlar o vídeo com o scroll
     const el = refVideo.current as HTMLVideoElement | null;
 
     const createVideoST = () => {
       if (!el) return;
 
-      // pausa qualquer autoplay/loop
       el.pause();
-      // começa do início sempre que entrar no scroll
       el.currentTime = 0;
 
-      gsap.to(el, {
-        currentTime: el.duration, // duração real do vídeo 
+      // Proxy para suavizar o currentTime
+      const proxy = { t: 0 };
+
+      gsap.to(proxy, {
+        t: el.duration,
         ease: "none",
         scrollTrigger: {
           trigger: "#information-section",
-          start: "top top",                   // começa quando section encosta no topo
-          end: () => `+=${el.duration * 100}`,// ajusta o scroll proporcional à duração
-          scrub: true,                        // vídeo anda junto com o scroll
+          start: "top top",
+          end: () => `+=${el.duration * 120}`,// mais espaço de scroll → mais suave
+          scrub: 0.5,                         // <- suaviza a transição do tempo (0.5s de atraso)
           pin: true,                          // fixa a section na tela (vídeo fica parado no bottom)
           anticipatePin: 1,                   // suaviza o pin
+          onUpdate: () => {
+            el.currentTime = proxy.t;
+          }
         },
       });
     };
