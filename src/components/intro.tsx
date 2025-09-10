@@ -112,14 +112,14 @@ export function Intro() {
           id="clip-image-child"
         >
           <img
-            src="src/assets/images/custom-home-intro-desktop.webp"
+            src="/images/custom-home-intro-desktop.webp"
             alt="Background"
             className="absolute left-0 top-0 size-full object-cover"
             ref={imageCustomHomeIntroBackgroundRef}
           />
         </div>
           <img
-            src="src/assets/images/custom-home-intro.webp"
+            src="/images/custom-home-intro.webp"
             alt="Background rocks"
             className="absolute origin-center -translate-x-1/2 z-20 size-full min-w-fit object-cover"
             ref={imageCustomHomeIntroRef}

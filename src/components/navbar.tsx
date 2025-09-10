@@ -38,7 +38,7 @@ export function NavBar() {
       timeoutId = setTimeout(() => {
         if (zentryMusicAudioElementRef.current) {
           zentryMusicAudioElementRef.current.src =
-            "src/assets/audio/music_loop_1.mp3";
+            "/audio/music_loop_1.mp3";
           zentryMusicAudioElementRef.current.play(); // recomeça o novo áudio
         }
       }, (60 + 12) * 1000); // 72 segundos em milissegundos
@@ -80,7 +80,7 @@ export function NavBar() {
           <a className="cursor-pointer" href="/">
             <img
               className="w-14"
-              src="src/assets/zentry-symbol-white.png"
+              src="/zentry-symbol-white.png"
               alt="Logo zentry"
             />
           </a>
@@ -102,7 +102,7 @@ export function NavBar() {
         {/* Right navbar-items */}
         <div className="flex gap-4 items-center px-8 relative">
           <audio
-            src="src/assets/audio/ui.mp3"
+            src="/audio/ui.mp3"
             ref={uiSoundAudioElementRef}
             className="hidden"
             hidden
@@ -127,7 +127,7 @@ export function NavBar() {
             onMouseEnter={playUiSoundAudioElement}
           >
             <audio
-              src="src/assets/audio/music_main.mp3"
+              src="/audio/music_main.mp3"
               ref={zentryMusicAudioElementRef}
               className="hidden"
               loop

@@ -14,7 +14,7 @@ interface IInformationProps {
 export function Information({ setIsColorLight }: IInformationProps) {
   // useVideo retorna [elemento, state, controls, ref]
   const [videoEl, state, _, refVideo] = useVideo({
-    src: "src/assets/video/Zentry_Token.mp4",
+    src: "/video/Zentry_Token.mp4",
     loop: true,
     className: "absolute right-0 w-2xl bottom-0 object-center top-auto",
     id: "video-information-section",

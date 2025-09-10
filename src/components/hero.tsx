@@ -24,7 +24,7 @@ export function Hero() {
   const nextVideoRef = useRef<HTMLVideoElement>(null);
   const nextVideoRefAux = useRef<HTMLVideoElement>(null);
   const [audio, _, controls, ref] = useAudio({
-    src: "src/assets/audio/whoosh.mp3",
+    src: "/audio/whoosh.mp3",
     autoPlay: false,
   });
 
@@ -55,7 +55,7 @@ export function Hero() {
           },
           onComplete: () => {
             if (nextVideoRefAux.current) {
-              nextVideoRefAux.current.src = `src/assets/video/hero-cut-${formatNumberBetwenOneToFour(
+              nextVideoRefAux.current.src = `/video/hero-cut-${formatNumberBetwenOneToFour(
                 currentVideoIndex
               )}.mp4`;
               nextVideoRefAux.current.currentTime = +DURATION;
@@ -122,7 +122,7 @@ export function Hero() {
   });
 
   const getVideoSource = (index: number) =>
-    `src/assets/video/hero-cut-${formatNumberBetwenOneToFour(index)}.mp4`;
+    `/video/hero-cut-${formatNumberBetwenOneToFour(index)}.mp4`;
 
   return (
     <section className="relative">
