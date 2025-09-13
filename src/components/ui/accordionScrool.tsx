@@ -10,10 +10,14 @@ type Props = {
 };
 
 
-export function AccordionScrool() {
+export function AccordionScrool({ totalDuration }: { totalDuration: number }) { 
   useGSAP(() => {
     const items = gsap.utils.toArray<HTMLLIElement>("#accordion-area li");
-
+    // duração do video
+    const sectionDuration = totalDuration * 120;
+    // const slice = sectionDuration / items.length;
+    const slice = sectionDuration;
+    
     items.forEach((item, i) => {
       const progressBar = item.querySelector(".progress"); // barra lateral cinza
       const textSpan = item.querySelector("span");         // texto do item
@@ -28,12 +32,14 @@ export function AccordionScrool() {
         {
           scaleY: 0,                                     // barra vazia
           ease: "none",                                  // sem easing (scroll puro)
+          duration:1,
           scrollTrigger: {
             trigger: item,                               // cada <li> é o trigger
-            start: "top center+=100",                    // inicia quando <li> chega um pouco acima do centro
-            end: "bottom center",                        // termina quando sai do centro
-            scrub: true,                                 // anima ligado ao scroll
-            markers: false,                              // coloque true para debugar
+            start: "top bottom",                        // inicia quando <li> chega um pouco acima do centro
+            // end: "bottom center",                        // termina quando sai do centro
+            end: () => `bottom+=${(i + 1) * slice}`,
+            scrub: 0.5,                                  // anima ligado ao scroll
+            markers: true,                              // coloque true para debugar
             onUpdate: (self) => {
               // Se a animação está completa (barra = 0%)
               if (self.progress === 1) {

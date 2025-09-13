@@ -97,7 +97,7 @@ export function Information({ setIsColorLight }: IInformationProps) {
       </AnimatedText>
       {videoEl}
 
-    <AccordionScrool/>
+    <AccordionScrool totalDuration={state.duration}/>
     </section>
   );
 }
