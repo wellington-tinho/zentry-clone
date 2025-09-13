@@ -1,5 +1,52 @@
-export function AccordionScrool() {
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/all";
 
+gsap.registerPlugin(ScrollTrigger);
+
+type Props = {
+  parentDuration: number;      // recebe el.duration do pai
+  multiplier?: number;         // controla a velocidade da animação
+};
+
+
+export function AccordionScrool() {
+  useGSAP(() => {
+    const items = gsap.utils.toArray<HTMLLIElement>("#accordion-area li");
+
+    items.forEach((item, i) => {
+      const progressBar = item.querySelector(".progress"); // barra lateral cinza
+      const textSpan = item.querySelector("span");         // texto do item
+
+      // Garante que os elementos existem
+      if (!progressBar || !textSpan) return;
+
+      // Anima a progressBar de 100% (scaleY:1) até 0% (scaleY:0)
+      gsap.fromTo(
+        progressBar,
+        { scaleY: 1, transformOrigin: "bottom center" }, // barra cheia, cresce de baixo p/ cima
+        {
+          scaleY: 0,                                     // barra vazia
+          ease: "none",                                  // sem easing (scroll puro)
+          scrollTrigger: {
+            trigger: item,                               // cada <li> é o trigger
+            start: "top center+=100",                    // inicia quando <li> chega um pouco acima do centro
+            end: "bottom center",                        // termina quando sai do centro
+            scrub: true,                                 // anima ligado ao scroll
+            markers: false,                              // coloque true para debugar
+            onUpdate: (self) => {
+              // Se a animação está completa (barra = 0%)
+              if (self.progress === 1) {
+                textSpan?.classList.add("hidden");
+              } else {
+                textSpan?.classList.remove("hidden");
+              }
+            },
+          },
+        }
+      );
+    });
+  });
 
 
   return (
@@ -12,7 +59,7 @@ export function AccordionScrool() {
           <span className="relative block ml-16 text-xs text-justify w-auto">
             ZENT holders shape governance, set direction, and steer the evolution of the Human-Agentic OS, serving as co-architects of a new civilization
             <div className="w-0.5 bg-black h-full absolute bottom-0 -left-[58px]"></div>
-            <div className="progress w-0.5 bg-zinc-400 h-7/12 absolute bottom-0 -left-[58px]"></div>
+            <div className="progress w-0.5 bg-zinc-400 h-full absolute bottom-0 -left-[58px]"></div>
           </span>
         </li>
 
@@ -24,7 +71,7 @@ export function AccordionScrool() {
           <span className="hidden relative block ml-16 text-xs text-justify w-auto">
             ZENT is the index for crypto and AI, giving holders access to new markets, agent tokenization, data economies, and protocol rewards, unlocking utility and upside across the industries it powers.
             <div className="w-0.5 bg-black h-full absolute bottom-0 -left-[58px]"></div>
-            <div className="progress w-0.5 bg-zinc-400 h-7/12 absolute bottom-0 -left-[58px]"></div>
+            <div className="progress w-0.5 bg-zinc-400 h-full absolute bottom-0 -left-[58px]"></div>
           </span>
         </li>
 
@@ -36,7 +83,7 @@ export function AccordionScrool() {
           <span className="hidden relative block ml-16 text-xs text-justify w-auto">
             ZENT holders benefit from Zentry’s ecosystem growth, capturing value from partnerships, treasury strategy, and real-world participation.
             <div className="w-0.5 bg-black h-full absolute bottom-0 -left-[58px]"></div>
-            <div className="progress w-0.5 bg-zinc-400 h-7/12 absolute bottom-0 -left-[58px]"></div>
+            <div className="progress w-0.5 bg-zinc-400 h-full absolute bottom-0 -left-[58px]"></div>
           </span>
         </li>
       </ul>
