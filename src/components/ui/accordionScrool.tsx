@@ -5,13 +5,22 @@ import { ScrollTrigger } from "gsap/all";
 gsap.registerPlugin(ScrollTrigger);
 
 
-export function AccordionScrool({ totalDuration }: { totalDuration: number }) { 
+export function AccordionScrool({ totalDuration = 10 }: { totalDuration: number }) { 
+
   useGSAP(() => {
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: '#accordion-area', 
+        start: "top center", 
+        end: "+=900 center",
+        scrub: true,      // anima ligado ao scroll
+        markers: true,    // coloque true para debugar        
+      },
+    });
+
     const items = gsap.utils.toArray<HTMLLIElement>("#accordion-area li");
-    // duração do video
-    const sectionDuration = totalDuration * 120;
-    // const slice = sectionDuration / items.length;
-    const slice = sectionDuration;
+    console.log("🚀 ~ AccordionScrool ~ items:", items)
     
     items.forEach((item, i) => {
       const progressBar = item.querySelector(".progress"); // barra lateral cinza
@@ -20,34 +29,21 @@ export function AccordionScrool({ totalDuration }: { totalDuration: number }) {
       // Garante que os elementos existem
       if (!progressBar || !textSpan) return;
 
-      // Anima a progressBar de 100% (scaleY:1) até 0% (scaleY:0)
-      gsap.fromTo(
-        progressBar,
-        { scaleY: 1, transformOrigin: "bottom center" }, // barra cheia, cresce de baixo p/ cima
-        {
-          scaleY: 0,                                     // barra vazia
-          ease: "none",                                  // sem easing (scroll puro)
-          duration:1,
-          scrollTrigger: {
-            trigger: item,                               // cada <li> é o trigger
-            start: "top bottom",                        // inicia quando <li> chega um pouco acima do centro
-            // end: "bottom center",                        // termina quando sai do centro
-            end: () => `bottom+=${(i + 1) * slice}`,
-            scrub: 0.5,                                  // anima ligado ao scroll
-            markers: true,                              // coloque true para debugar
-            onUpdate: (self) => {
-              // Se a animação está completa (barra = 0%)
-              if (self.progress === 1) {
-                textSpan?.classList.add("hidden");
-              } else {
-                textSpan?.classList.remove("hidden");
-              }
-            },
-          },
-        }
-      );
+      tl.to(progressBar, {
+        height: 0,
+        onStart: () => {
+          console.log("textSpan",textSpan);
+          textSpan.classList.remove("hidden");
+          textSpan.classList.add("block");
+        },
+        onComplete: () => {
+          console.log("textSpan",textSpan);
+          textSpan.classList.remove("block");
+          textSpan.classList.add("hidden");
+        },
+      });
     });
-  });
+  },{revertOnUpdate: true });
 
 
   return (
@@ -60,7 +56,7 @@ export function AccordionScrool({ totalDuration }: { totalDuration: number }) {
           <span className="relative block ml-16 text-xs text-justify w-auto">
             ZENT holders shape governance, set direction, and steer the evolution of the Human-Agentic OS, serving as co-architects of a new civilization
             <div className="w-0.5 bg-black h-full absolute bottom-0 -left-[58px]"></div>
-            <div className="progress w-0.5 bg-zinc-400 h-full absolute bottom-0 -left-[58px]"></div>
+            <div className="progress w-0.5 bg-zinc-400 h-full scale-y-100 absolute bottom-0 -left-[58px]"></div>
           </span>
         </li>
 
@@ -72,7 +68,7 @@ export function AccordionScrool({ totalDuration }: { totalDuration: number }) {
           <span className="hidden relative ml-16 text-xs text-justify w-auto">
             ZENT is the index for crypto and AI, giving holders access to new markets, agent tokenization, data economies, and protocol rewards, unlocking utility and upside across the industries it powers.
             <div className="w-0.5 bg-black h-full absolute bottom-0 -left-[58px]"></div>
-            <div className="progress w-0.5 bg-zinc-400 h-full absolute bottom-0 -left-[58px]"></div>
+            <div className="progress w-0.5 bg-zinc-400 h-full scale-y-100 absolute bottom-0 -left-[58px]"></div>
           </span>
         </li>
 
@@ -84,7 +80,7 @@ export function AccordionScrool({ totalDuration }: { totalDuration: number }) {
           <span className="hidden relative ml-16 text-xs text-justify w-auto">
             ZENT holders benefit from Zentry’s ecosystem growth, capturing value from partnerships, treasury strategy, and real-world participation.
             <div className="w-0.5 bg-black h-full absolute bottom-0 -left-[58px]"></div>
-            <div className="progress w-0.5 bg-zinc-400 h-full absolute bottom-0 -left-[58px]"></div>
+            <div className="progress w-0.5 bg-zinc-400 h-full scale-y-100 absolute bottom-0 -left-[58px]"></div>
           </span>
         </li>
       </ul>
