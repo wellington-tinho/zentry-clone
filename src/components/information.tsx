@@ -3,7 +3,7 @@ import { ScrollTrigger } from "gsap/all";
 import { useVideo } from "react-use";
 import gsap from "gsap";
 import { AnimatedText } from "./ui/animatedText";
-import { AccordionScrool } from "./ui/accordionScrool";
+import { AccordionScroll } from "./ui/accordionScroll";
 
 // registra o plugin ScrollTrigger no GSAP
 gsap.registerPlugin(ScrollTrigger);
@@ -97,7 +97,7 @@ export function Information({ setIsColorLight }: IInformationProps) {
       </AnimatedText>
       {videoEl}
 
-    <AccordionScrool totalDuration={state.duration}/>
+    <AccordionScroll/>
     </section>
   );
 }
