@@ -4,6 +4,7 @@ import { Intro } from './components/intro'
 import { NavBar } from './components/navbar'
 import { ProductGrid } from './components/productGrid'
 import { Information } from './components/information'
+import { Footer } from './components/footer'
 
 function App() {
     const [isColorLight, setIsColorLight] = useState(false);
@@ -19,11 +20,9 @@ function App() {
             <ProductGrid/>
             <Information setIsColorLight={setIsColorLight}/>
           </div>
-          <section>History</section>
         </main>
-        <footer>
+        <Footer/>
           
-        </footer>
       </div>
   </Suspense>
   )

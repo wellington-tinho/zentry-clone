@@ -15,8 +15,8 @@ export function Intro() {
     const element = imageCustomHomeIntroRef.current;
 
     if (element) {
-    gsap.to(element, { duration: 4, x: 0, y: 0, ease: "power2.out" });
-    gsap.to(imageCustomHomeIntroBackgroundRef.current, { duration: 1, x: 0, y: 0, ease: "power2.out" });
+      gsap.to(element, { duration: 4, x: 0, y: 0, ease: "power2.out" });
+      gsap.to(imageCustomHomeIntroBackgroundRef.current, { duration: 1, x: 0, y: 0, ease: "power2.out" });
     }
   };
 
