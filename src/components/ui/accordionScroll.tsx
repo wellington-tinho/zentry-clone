@@ -13,7 +13,7 @@ export function AccordionScroll() {
           start: "top center",
           end: "+=900 center",
           scrub: true,
-          markers: true, // coloque true para debugar
+          markers: false, // coloque true para debugar
           toggleActions: "play none none reverse",
         },
       });

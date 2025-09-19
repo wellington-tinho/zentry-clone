@@ -21,7 +21,6 @@ export function Information({ setIsColorLight }: IInformationProps) {
   });
 
   useGSAP(() => {
-
     // Realizar troca de cor do fundo
       gsap.set("#video-information-section", {
         opacity: 0,
