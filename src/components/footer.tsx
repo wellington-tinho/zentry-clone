@@ -7,37 +7,55 @@ export function Footer(){
   const footerRef = useRef<HTMLElement>(null)
 
   useGSAP(() => {
-    // Centralizar a imagem no cursor
-    gsap.set(".zentry-img", { xPercent: -50, yPercent: -50 });
+    // inicia oculta
+    gsap.set(".zentry-img", { opacity: 0 });
 
-    // incia centralizada
-    let mouseX = window.innerWidth / 2; 
+    // inicia centralizada
+    let mouseX = window.innerWidth / 2;
     let mouseY = window.innerHeight / 2;
 
-    // atualiza coordenadas
-    window.addEventListener("mousemove", (e) => {
+    // Atualiza coordenadas do mouse
+    const handleMouseMove = (e: MouseEvent) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
-    });
+    };
 
-    // Quando o mouse sai da janela → esconde
-    footerRef.current!.addEventListener("mouseleave", () => {
-      gsap.to(".zentry-img", { opacity: 0, duration: 1, overwrite: "auto" });
-    });
-    footerRef.current!.addEventListener("mouseover", () => {
-      gsap.to(".zentry-img", { opacity: 1, duration: 1});
-    });
-
-    // usa o ticker do GSAP para animar suavemente a cada frame
-    gsap.ticker.add(() => {
+    // função para mover suavemente a cada frame
+    const tickerGaspCallback = () => {
       gsap.to(".zentry-img", {
         x: mouseX,
         y: mouseY,
-        duration: 0.3, // controla o delay
+        duration: 0.3,
         ease: "power2.out",
         overwrite: "auto",
       });
-    });
+    };
+
+    // quando mouse entra no footer
+    const handleMouseEnter = () => {
+      gsap.to(".zentry-img", { opacity: 1, duration: 1 });
+      window.addEventListener("mousemove", handleMouseMove);
+      gsap.ticker.add(tickerGaspCallback);
+    };
+
+    // quando mouse sai do footer
+    const handleMouseLeave = () => {
+      gsap.to(".zentry-img", { opacity: 0, duration: 1, overwrite: "auto" });
+      window.removeEventListener("mousemove", handleMouseMove);
+      gsap.ticker.remove(tickerGaspCallback);
+    };
+
+    // adiciona listeners no footer
+    footerRef.current?.addEventListener("mouseenter", handleMouseEnter);
+    footerRef.current?.addEventListener("mouseleave", handleMouseLeave);
+
+    // cleanup
+    return () => {
+      footerRef.current?.removeEventListener("mouseenter", handleMouseEnter);
+      footerRef.current?.removeEventListener("mouseleave", handleMouseLeave);
+      window.removeEventListener("mousemove", handleMouseMove);
+      gsap.ticker.remove(tickerGaspCallback);
+    };
   });
 
 
