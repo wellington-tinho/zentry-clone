@@ -11,12 +11,12 @@ function App() {
 
   return (
     <Suspense fallback={<>Carregando</>}>
-      <div className=' min-h-screen w-auto overflow-x-hidden bg-[#DFDFF2]'>
+      <div className='min-h-screen w-full overflow-x-hidden bg-[#DFDFF2]'>
         <NavBar />
-        <main>
+        <main className="w-full">
           <Hero />
           <Intro />
-          <div className={`${isColorLight ? "bg-[#DFDFF2] text-[#09090b]" : "bg-zinc-950 text-white"}`}>
+          <div className={`w-full ${isColorLight ? "bg-[#DFDFF2] text-[#09090b]" : "bg-zinc-950 text-white"}`}>
             <ProductGrid/>
             <Information setIsColorLight={setIsColorLight}/>
           </div>

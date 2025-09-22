@@ -90,17 +90,17 @@ export function Intro() {
 
   return (
 
-    <section className="flex items-center flex-col">
+    <section className="flex items-center flex-col px-4 sm:px-6 lg:px-8">
       <p className="tracking-wider font-semibold text-[10px] uppercase">
         Welcome to zentry
       </p>
 
-      <div className="py-10">
+      <div className="py-6 sm:py-8 lg:py-10">
         <AnimatedText>
-            <p className="text-center font-zentry text-6xl md:text-8xl">
+            <p className="text-center font-zentry text-3xl sm:text-5xl lg:text-6xl xl:text-8xl leading-tight">
               Disc<span className="special-zentry">o</span>ver the world's
             </p>
-            <p className="text-center font-zentry text-6xl md:text-8xl">
+            <p className="text-center font-zentry text-3xl sm:text-5xl lg:text-6xl xl:text-8xl leading-tight">
               Largest shared <span className="special-zentry">A</span>dventures
             </p>
         </AnimatedText>
@@ -130,8 +130,8 @@ export function Intro() {
           />
 
 
-        <div className="absolute mt-[80vh] w-screen left-1/2 -translate-x-1/2 flex items-center flex-col text-xs">
-          <p className="mt-7">
+        <div className="absolute mt-[70vh] sm:mt-[75vh] lg:mt-[80vh] w-screen left-1/2 -translate-x-1/2 flex items-center flex-col text-xs sm:text-sm px-4 sm:px-6 lg:px-8">
+          <p className="mt-4 sm:mt-6 lg:mt-7 text-center">
             <b>The Metagame begins—your life, now an epic MMORPG</b>
           </p>
           <p className="text-center text-gray-400">

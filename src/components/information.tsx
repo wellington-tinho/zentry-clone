@@ -16,7 +16,7 @@ export function Information({ setIsColorLight }: IInformationProps) {
   const [videoEl, state, _, refVideo] = useVideo({
     src: "/video/Zentry_Token.mp4",
     loop: true,
-    className: "absolute right-0 w-2xl bottom-0 object-center top-auto",
+    className: "absolute right-0 w-sm sm:w-xl lg:w-2xl bottom-0 object-center top-auto",
     id: "video-information-section",
   });
 
@@ -83,14 +83,14 @@ export function Information({ setIsColorLight }: IInformationProps) {
   return (
     <section
       id="information-section"
-      className="relative py-10 h-dvh"
+      className="relative py-6 sm:py-8 lg:py-10 h-dvh "
     >
       
-      <AnimatedText xAxis={-100} className="p-8 top-0 z-10">
-        <p className="text-7xl font-zentry">
+      <AnimatedText xAxis={-100} className="p-4 sm:p-6 lg:p-8 top-0 z-10">
+        <p className="text-3xl sm:text-5xl lg:text-7xl font-zentry leading-tight">
           the univ<span className="special-zentry">e</span>rse
         </p>
-        <p className="text-7xl font-zentry">
+        <p className="text-3xl sm:text-5xl lg:text-7xl font-zentry leading-tight">
           powerd by ZE<span className="special-zentry">n</span>try
         </p>
       </AnimatedText>

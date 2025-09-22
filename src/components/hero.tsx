@@ -127,7 +127,7 @@ export function Hero() {
   return (
     <section className="relative">
       {audio}
-      <h1 className="absolute uppercase text-7xl md:text-[10rem] bottom-20 right-12 text-zinc-950 font-zentry">
+      <h1 className="absolute uppercase text-4xl sm:text-6xl md:text-7xl lg:text-[10rem] bottom-4 sm:bottom-8 lg:bottom-20 right-4 sm:right-8 lg:right-12 text-zinc-950 font-zentry z-10">
         <span>
           G<span className="special-zentry">a</span>ming
         </span>
@@ -151,13 +151,13 @@ export function Hero() {
             className="top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] invisible absolute size-64 object-cover object-center"
           />
 
-          <h1 className="absolute uppercase text-7xl md:text-[10rem] top-20 left-12 text-[#DFDFF2] font-zentry tracking-wide">
+          <h1 className="absolute uppercase text-4xl sm:text-6xl md:text-7xl lg:text-[10rem] top-4 sm:top-8 lg:top-20 left-4 sm:left-8 lg:left-12 text-[#DFDFF2] font-zentry tracking-wide z-10">
             <span>
               Redefi<span className="special-zentry">N</span>e
             </span>
           </h1>
 
-          <span className="relative top-60 left-12 text-xl text-[#DFDFF2]">
+          <span className="absolute top-32 sm:top-48 lg:top-60 left-4 sm:left-8 lg:left-12 text-sm sm:text-lg lg:text-xl text-[#DFDFF2] z-10">
             Enter the Metagame
             <br />
             Unleash the Play Economy
@@ -165,22 +165,22 @@ export function Hero() {
 
           <Button
             variant="main"
-            className="relative top-60 left-12 mt-8 !bg-[#f1ff7e] !p-5"
+            className="absolute top-48 sm:top-64 lg:top-80 left-4 sm:left-8 lg:left-12 mt-4 sm:mt-6 lg:mt-8 !bg-[#f1ff7e] !p-3 sm:!p-4 lg:!p-5 z-10"
           >
-            <FaLocationArrow className="rotate-45 w-3 mb-[1px]" />
-            <span className="ml-1 font-bold md:text-xs text-[8px] uppercase">
+            <FaLocationArrow className="rotate-45 w-2 sm:w-3 mb-[1px]" />
+            <span className="ml-1 font-bold text-[8px] sm:text-[10px] lg:text-xs uppercase">
               Watch Trailer
             </span>
           </Button>
 
-          <h1 className="absolute uppercase text-7xl md:text-[10rem] bottom-20 right-12 text-[#DFDFF2] font-zentry">
+          <h1 className="absolute uppercase text-4xl sm:text-6xl md:text-7xl lg:text-[10rem] bottom-4 sm:bottom-8 lg:bottom-20 right-4 sm:right-8 lg:right-12 text-[#DFDFF2] font-zentry z-10">
             <span>
               G<span className="special-zentry">a</span>ming
             </span>
           </h1>
 
           {/* Card video */}
-          <DivWithMouseInteractionEffects sensitivity={5} className="absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] size-64 cursor-pointer overflow-hidden rounded-lg">
+          <DivWithMouseInteractionEffects sensitivity={5} className="absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] w-32 h-32 sm:w-48 sm:h-48 lg:w-64 lg:h-64 cursor-pointer overflow-hidden rounded-lg z-20">
               <div className="scale-50 opacity-0 transition-all hover:opacity-100 hover:scale-100 duration-500">
                 <video
                   onClick={handleClickVideo}
@@ -188,7 +188,7 @@ export function Hero() {
                   muted
                   id="current-video"
                   src={getVideoSource(currentVideoIndex + 1)}
-                  className="size-64 origin-center scale-150 object-cover object-center"
+                  className="w-32 h-32 sm:w-48 sm:h-48 lg:w-64 lg:h-64 origin-center scale-150 object-cover object-center"
                 />
               </div>
           </DivWithMouseInteractionEffects>
