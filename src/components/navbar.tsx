@@ -125,6 +125,7 @@ export function NavBar() {
             onClick={toggleSoundZentry}
             className="cursor-pointer p-2 flex "
             onMouseEnter={playUiSoundAudioElement}
+            type="button"
           >
             <audio
               src="/audio/music_main.mp3"
