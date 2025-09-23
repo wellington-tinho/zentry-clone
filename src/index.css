@@ -1,30 +1,37 @@
+/** biome-ignore-all lint/suspicious/noUnknownAtRules: <explanation> */
+/** biome-ignore-all lint/a11y/useGenericFontNames: <explanation> */
 @import "tailwindcss";
 
-
 @theme {
-  --font-zentry: "Zentry", "sans-serif"; 
+	--font-zentry: "Zentry", "sans-serif";
 }
 
 @font-face {
-  font-family: Zentry;
-  font-style: normal;
-  font-display: swap;
-  src: url("/fonts/zentry-regular.woff2") format("woff2");
+	font-family: Zentry;
+	font-style: normal;
+	font-display: swap;
+	src: url("/fonts/zentry-regular.woff2") format("woff2");
 }
 
 @layer utilities {
-  .special-zentry {
-    font-family: "Zentry";
-    font-feature-settings: "ss01" on;
-  }
+	.special-zentry {
+		font-family: "Zentry";
+		font-feature-settings: "ss01" on;
+	}
 }
 
 .wave {
-  animation: wave 1s linear infinite;
-  animation-delay: var(--time-delay);
+	animation: wave 1s linear infinite;
+	animation-delay: var(--time-delay);
 }
 @keyframes wave {
-  0%   { transform: scaleY(0.2); }
-  50%  { transform: scaleY(1.2); }
-  100% { transform: scaleY(0.2); }
+	0% {
+		transform: scaleY(0.2);
+	}
+	50% {
+		transform: scaleY(1.2);
+	}
+	100% {
+		transform: scaleY(0.2);
+	}
 }
