@@ -7,28 +7,47 @@ on:
 
 permissions:
   contents: read
-  pull-requests: read
+  pull-requests: write
   issues: write
-  # models: read  # não é necessário ainda
 
 jobs:
   ai-review:
     runs-on: ubuntu-latest
+    # Não executar em PRs criados por bots para evitar loops
+    if: github.actor != 'github-actions[bot]'
+    
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Necessário para obter o histórico completo do PR
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      - name: Install deps
-        run: npm install openai @octokit/rest
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: latest
 
-      - name: Run AI Review
+      - name: Install dependencies
+        run: pnpm install openai @octokit/rest
+
+      - name: Run AI Code Review
         env:
-          GH_MODELS_TOKEN: ${{ secrets.GH_MODELS_TOKEN }} # seu PAT
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # token automático para comentar no PR
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
           GITHUB_EVENT_PATH: ${{ github.event_path }}
-        run: node .github/scripts/ai-review.js
+        run: |
+          echo "🚀 Iniciando AI Code Review..."
+          echo "PR Number: ${{ github.event.number }}"
+          echo "Repository: ${{ github.repository }}"
+          node .github/scripts/ai-review.js
+
+      - name: Review Summary
+        if: always()
+        run: |
+          echo "✅ AI Code Review processado"
+          echo "📊 Verifique os comentários no Pull Request para ver o resultado"

@@ -2,65 +2,89 @@ import { Octokit } from "@octokit/rest";
 import fs from "fs";
 import OpenAI from "openai";
 
-// Variáveis de ambiente
+// Configuração
 const [owner, repo] = process.env.GITHUB_REPOSITORY.split("/");
 const pull_number =
 	process.env.PR_NUMBER ||
 	JSON.parse(fs.readFileSync(process.env.GITHUB_EVENT_PATH)).pull_request
 		.number;
 
-// Octokit (para comentar no PR)
 const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
-
-// OpenAI (GitHub Models)
 const openai = new OpenAI({
-	baseURL: "https://models.github.ai/v1",
-	apiKey: process.env.GH_MODELS_TOKEN, // seu PAT
+	baseURL: "https://models.inference.ai.azure.com",
+	apiKey: process.env.GITHUB_TOKEN,
 });
 
 async function run() {
-	// 1. Obter diffs do PR
-	const { data: files } = await octokit.pulls.listFiles({
-		owner,
-		repo,
-		pull_number,
-	});
+	try {
+		console.log(`🔍 Reviewing PR #${pull_number}`);
 
-	let changes = "";
-	for (const file of files) {
-		if (file.patch) {
-			changes += `\n---\nArquivo: ${file.filename}\n${file.patch}`;
+		// Obter diffs
+		const { data: files } = await octokit.pulls.listFiles({
+			owner,
+			repo,
+			pull_number,
+		});
+
+		// Filtrar arquivos relevantes
+		const changes = files
+			.filter(
+				(file) =>
+					file.patch &&
+					/\.(js|jsx|ts|tsx|html|json|yaml|yml)$/i.test(file.filename),
+			)
+			.map((file) => `\n---\nArquivo: ${file.filename}\n${file.patch}`)
+			.join("");
+
+		if (!changes) {
+			console.log("📝 No relevant changes found");
+			return;
 		}
+
+		// Análise com IA
+		const response = await openai.chat.completions.create({
+			model: "gpt-4o-mini",
+			messages: [
+				{
+					role: "system",
+					content:
+						"Você é um revisor de código. Analise as mudanças e forneça feedback técnico construtivo sobre qualidade, bugs, performance e boas práticas.",
+				},
+				{
+					role: "user",
+					content: `Analise estas mudanças:\n${changes}`,
+				},
+			],
+			max_tokens: 1500,
+			temperature: 0.3,
+		});
+
+		// Comentar no PR
+		await octokit.issues.createComment({
+			owner,
+			repo,
+			issue_number: pull_number,
+			body: `## 🤖 AI Code Review\n\n${response.choices[0].message.content}\n\n---\n*Review automático*`,
+		});
+
+		console.log("✅ Review completed");
+	} catch (error) {
+		console.error("❌ Error:", error.message);
+
+		// Comentar erro no PR
+		try {
+			await octokit.issues.createComment({
+				owner,
+				repo,
+				issue_number: pull_number,
+				body: `## ❌ Erro no AI Review\n\n\`\`\`\n${error.message}\n\`\`\``,
+			});
+		} catch (commentError) {
+			console.error("Error commenting:", commentError.message);
+		}
+
+		process.exit(1);
 	}
-
-	// 2. Mandar para IA
-	const response = await openai.chat.completions.create({
-		model: "gpt-4.1-mini",
-		messages: [
-			{
-				role: "system",
-				content:
-					"Você é um revisor de código. Analise mudanças em Pull Requests e dê feedback técnico, claro e direto.",
-			},
-			{
-				role: "user",
-				content: `Aqui estão as mudanças no código:\n${changes}`,
-			},
-		],
-	});
-
-	const review = response.choices[0].message.content;
-
-	// 3. Comentar no PR
-	await octokit.issues.createComment({
-		owner,
-		repo,
-		issue_number: pull_number,
-		body: `🤖 **AI Code Review**:\n\n${review}`,
-	});
 }
 
-run().catch((err) => {
-	console.error(err);
-	process.exit(1);
-});
+run();
