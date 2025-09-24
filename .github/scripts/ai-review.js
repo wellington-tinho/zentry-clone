@@ -12,7 +12,7 @@ const pull_number =
 const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 const openai = new OpenAI({
 	baseURL: "https://models.inference.ai.azure.com",
-	apiKey: process.env.GITHUB_TOKEN,
+	apiKey: process.env.GH_MODELS_TOKEN,
 });
 
 async function run() {

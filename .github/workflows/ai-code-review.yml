@@ -9,6 +9,7 @@ permissions:
   contents: read
   pull-requests: write
   issues: write
+  models: read
 
 jobs:
   ai-review:
@@ -37,6 +38,7 @@ jobs:
 
       - name: Run AI Code Review
         env:
+          GH_MODELS_TOKEN: ${{ secrets.GH_MODELS_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
           GITHUB_EVENT_PATH: ${{ github.event_path }}
