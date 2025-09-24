@@ -1,7 +1,7 @@
 
 # <img src="./public/zentry-icon.png" width="24" height="24" alt="Zentry Icon" /> Zentry Clone 
 
-Este projeto é um clone da landing page da Zentry, desenvolvido com React, TypeScript, Vite e TailwindCSS.
+Este projeto é um clone da landing page da Zentry, desenvolvido com React, TypeScript, TailwindCSS e GASP.
 
 > 🚧 **Em desenvolvimento** — funcionalidades e estilos ainda podem sofrer alterações.
 
