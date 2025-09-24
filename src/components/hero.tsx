@@ -128,7 +128,7 @@ export function Hero() {
 	return (
 		<section className="relative">
 			{audio}
-			<h1 className="absolute uppercase text-4xl sm:text-6xl md:text-7xl lg:text-[10rem] bottom-4 sm:bottom-8 lg:bottom-20 right-4 sm:right-8 lg:right-12 text-zinc-950 font-zentry z-10">
+			<h1 className="absolute uppercase text-4xl sm:text-6xl md:text-7xl lg:text-[10rem] bottom-4 sm:bottom-8 lg:bottom-20 right-4 sm:right-8 lg:right-12 text-zinc-950 font-zentry">
 				<span>
 					G<span className="special-zentry">a</span>ming
 				</span>
