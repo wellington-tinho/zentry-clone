@@ -1,15 +1,26 @@
 
 # <img src="./public/zentry-icon.png" width="24" height="24" alt="Zentry Icon" /> Zentry Clone 
 
-Este projeto é um clone da landing page da Zentry, desenvolvido com React, TypeScript, Vite e TailwindCSS.
-
-> 🚧 **Em desenvolvimento** — funcionalidades e estilos ainda podem sofrer alterações.
+Este projeto é um clone da landing page da Zentry, desenvolvido com React, TypeScript, Vite e Tailwind CSS.
 
 ##  Demonstração
 
 [Veja o vídeo do Zentry Clone](https://portfolio-lake-eta-46.vercel.app/assets/zentry-clone.mp4)
 
 Versão live: https://zentry-clone-olive-one.vercel.app/
+
+## 🤖 AI Code Review
+
+Este projeto inclui um sistema automatizado de code review usando GitHub Models que roda automaticamente em Pull Requests e commits diretos nos branches `main` e `developer`.
+Veja um exemplo aqui: [Pull request #1](https://github.com/wellington-tinho/zentry-clone/pull/1) 
+
+**Funcionalidades:**
+- ✅ Análise automática de código a cada alteração
+- ✅ Feedback técnico sobre qualidade, bugs e boas práticas
+- ✅ Comentários automáticos no PR com timestamp
+- ✅ Filtro inteligente de arquivos relevantes
+
+Para mais detalhes sobre configuração e uso, consulte: **[📋 AI Code Review - Documentação Completa](.github/AI-REVIEW-README.md)**
 
 ## 📦 Estrutura do Projeto (detalhada)
 
@@ -49,23 +60,12 @@ src/
 pnpm install
 ```
 
-ou
-
-```bash
-npm install
-```
-
 2. Inicie o servidor de desenvolvimento:
 
 ```bash
 pnpm dev
 ```
 
-ou
-
-```bash
-npm run dev
-```
 
 3. Abra o navegador em http://localhost:5173
 
@@ -88,17 +88,6 @@ npm run dev
 
 TailwindCSS com classes utilitárias e customizações em `src/index.css`.
 
-## 🤖 AI Code Review
-
-Este projeto inclui um sistema automatizado de code review usando GitHub Models que roda automaticamente em Pull Requests e commits diretos nos branches `main` e `developer`.
-
-**Funcionalidades:**
-- ✅ Análise automática de código a cada alteração
-- ✅ Feedback técnico sobre qualidade, bugs e boas práticas
-- ✅ Comentários automáticos no PR com timestamp
-- ✅ Filtro inteligente de arquivos relevantes
-
-Para mais detalhes sobre configuração e uso, consulte: **[📋 AI Code Review - Documentação Completa](.github/AI-REVIEW-README.md)**
 
 ## 📄 Licença
 
