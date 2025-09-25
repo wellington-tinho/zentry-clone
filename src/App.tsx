@@ -8,7 +8,6 @@ import { ProductGrid } from "./components/productGrid";
 
 function App() {
 	const [isColorLight, setIsColorLight] = useState(false);
-	console.log("test action");
 
 	return (
 		<Suspense fallback={<>Carregando</>}>
