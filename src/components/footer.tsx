@@ -61,7 +61,9 @@ export function Footer() {
 	return (
 		<footer
 			ref={footerRef}
-			className="bg-linear-to-br from-0% from-[#5542FF] to-100% to-[#b28ef2] h-64 sm:h-80 lg:h-96 flex items-center justify-around flex-col relative px-4 sm:px-6 lg:px-8"
+			className="bg-linear-to-br from-0% from-[#5542FF] to-100% to-[#b28ef2] h-64 sm:h-80 lg:h-96 
+				flex items-center justify-around flex-col relative px-4 sm:px-6 lg:px-8
+			"
 		>
 			<img
 				src="/zentry-symbol-white.png"
@@ -81,11 +83,10 @@ export function Footer() {
 					Desenvolvido por{" "}
 					<a
 						href="www.linkedin.com/in/wellington123"
-						className="relative inline-block
-         after:content-[''] after:absolute after:left-0 after:bottom-0
-         after:h-[2px] after:w-0 after:bg-zinc-800
-         after:transition-all after:duration-300
-         hover:after:w-full font-medium"
+						className="relative inline-block after:content-[''] after:absolute after:left-0 
+							after:bottom-0 after:h-[2px] after:w-0 after:bg-zinc-800 after:transition-all 
+							after:duration-300 hover:after:w-full font-medium
+						"
 						target="_blank"
 						rel="noopener"
 					>
