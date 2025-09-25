@@ -88,6 +88,18 @@ npm run dev
 
 TailwindCSS com classes utilitárias e customizações em `src/index.css`.
 
+## 🤖 AI Code Review
+
+Este projeto inclui um sistema automatizado de code review usando GitHub Models que roda automaticamente em Pull Requests e commits diretos nos branches `main` e `developer`.
+
+**Funcionalidades:**
+- ✅ Análise automática de código a cada alteração
+- ✅ Feedback técnico sobre qualidade, bugs e boas práticas
+- ✅ Comentários automáticos no PR com timestamp
+- ✅ Filtro inteligente de arquivos relevantes
+
+Para mais detalhes sobre configuração e uso, consulte: **[📋 AI Code Review - Documentação Completa](.github/AI-REVIEW-README.md)**
+
 ## 📄 Licença
 
 Uso educacional. Este projeto não tem vínculo oficial com a Zentry.
