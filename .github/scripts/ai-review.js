@@ -31,15 +31,23 @@ async function run() {
 			.filter(
 				(file) =>
 					file.patch &&
-					/\.(js|jsx|ts|tsx|html|json|yaml|yml)$/i.test(file.filename),
+					/\.(js|jsx|ts|tsx|html)$/i.test(file.filename) &&
+					file.status !== "deleted",
 			)
-			.map((file) => `\n---\nArquivo: ${file.filename}\n${file.patch}`)
+			.map(
+				(file) =>
+					`\n---\nArquivo: ${file.filename} (${file.status})\n${file.patch}`,
+			)
 			.join("");
+
+		console.log(`📁 Analisando ${files.length} arquivos modificados`);
 
 		if (!changes) {
 			console.log("📝 No relevant changes found");
 			return;
 		}
+
+		console.log("🔄 Gerando novo AI Review...");
 
 		// Análise com IA
 		const response = await openai.chat.completions.create({
@@ -60,11 +68,12 @@ async function run() {
 		});
 
 		// Comentar no PR
+		const timestamp = new Date().toLocaleString("pt-BR");
 		await octokit.issues.createComment({
 			owner,
 			repo,
 			issue_number: pull_number,
-			body: `## 🤖 AI Code Review\n\n${response.choices[0].message.content}\n\n---\n*Review automático*`,
+			body: `## 🤖 AI Code Review (Atualizado)\n\n${response.choices[0].message.content}\n\n---\n*Review automático - ${timestamp}*\n*Este review é gerado a cada alteração no código*`,
 		});
 
 		console.log("✅ Review completed");
