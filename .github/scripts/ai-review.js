@@ -48,7 +48,7 @@ async function run() {
 				{
 					role: "system",
 					content:
-						"Você é um revisor de código. Analise as mudanças e forneça feedback técnico construtivo sobre qualidade, bugs, performance e boas práticas.",
+						"Você é um revisor de código senior. Revise as mudanças, aponte possíveis problemas de lógica ou bugs com referência de linhas, e forneça feedback técnico conciso com recomendações e boas práticas.",
 				},
 				{
 					role: "user",
