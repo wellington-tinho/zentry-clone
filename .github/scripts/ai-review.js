@@ -6,8 +6,7 @@ import OpenAI from "openai";
 const [owner, repo] = process.env.GITHUB_REPOSITORY.split("/");
 const pull_number =
 	process.env.PR_NUMBER ||
-	JSON.parse(fs.readFileSync(process.env.GITHUB_EVENT_PATH)).pull_request
-		.number;
+	JSON.parse(fs.readFileSync(process.env.GITHUB_EVENT_PATH)).pull_request?.number;
 
 const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 const openai = new OpenAI({
